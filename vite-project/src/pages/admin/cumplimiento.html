@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Reportes de cumplimiento de compromisos del régimen de ZoFranca CR." />
+    <title>Cumplimiento | ZoFranca CR</title>
+    <link rel="stylesheet" href="../../css/variables.css" />
+    <link rel="stylesheet" href="../../css/global.css" />
+    <link rel="stylesheet" href="../../css/components.css" />
+    <link rel="stylesheet" href="../../css/dashboard.css" />
+  </head>
+  <body>
+    <a class="saltar-a" href="#contenido-principal">Saltar al contenido</a>
+
+    <div class="app">
+      <aside class="barra-lateral" id="barra-lateral">
+        <a class="marca" href="../../../index.html">
+          <span class="marca__logo">ZF</span>
+          <span>ZoFranca CR<small>Zonas Francas · Costa Rica</small></span>
+        </a>
+
+        <nav class="navegacion-lateral" aria-label="Navegación del panel">
+          <p class="navegacion-lateral__titulo">Principal</p>
+          <a class="enlace-lateral" href="../admin/admin.html">
+            <svg class="icono-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+            Panel general
+          </a>
+          <a class="enlace-lateral" href="../empresas/empresas.html">
+            <svg class="icono-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 21v-6h6v6"/><path d="M9 10h.01M15 10h.01"/></svg>
+            Empresas
+            <span class="contador">12</span>
+          </a>
+
+          <p class="navegacion-lateral__titulo">Gestión</p>
+          <a class="enlace-lateral" href="../empresas/solicitud.html">
+            <svg class="icono-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+            Nueva solicitud
+          </a>
+          <a class="enlace-lateral enlace-lateral--activo" href="cumplimiento.html" aria-current="page">
+            <svg class="icono-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+            Cumplimiento
+          </a>
+          <a class="enlace-lateral" href="alertas.html">
+            <svg class="icono-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            Alertas
+            <span class="contador">3</span>
+          </a>
+        </nav>
+
+        <div class="tarjeta-usuario">
+          <span class="avatar">MA</span>
+          <div>
+            <strong>Marta Arroyo</strong>
+            <small>Analista senior</small>
+          </div>
+          <a class="enlace-lateral" href="../../../index.html" title="Cerrar sesión" style="margin-left:auto; padding:0.5rem;">
+            <svg class="icono-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+          </a>
+        </div>
+      </aside>
+
+      <div class="fondo-menu" id="fondo-menu"></div>
+
+      <div class="app-contenido">
+        <header class="cabecera-app">
+          <button class="boton-menu" id="boton-menu" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="barra-lateral">
+            <svg class="icono-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+          </button>
+          <div class="cabecera-app__titulo">
+            <h2>Control de cumplimiento</h2>
+            <p>RF-06 · Seguimiento de compromisos de inversión y empleo</p>
+          </div>
+          <div class="cabecera-app__acciones"></div>
+        </header>
+
+        <main class="contenido-principal" id="contenido-principal">
+          <section class="rejilla-metricas" aria-label="Indicadores de cumplimiento">
+            <article class="tarjeta-metrica tarjeta-metrica--marino">
+              <small>Empresas monitoreadas</small>
+              <strong>12</strong>
+              <span class="variacion texto-suave">Régimen activo</span>
+            </article>
+            <article class="tarjeta-metrica tarjeta-metrica--info">
+              <small>Reportes Q2 recibidos</small>
+              <strong>9 / 12</strong>
+              <span class="variacion texto-suave">Faltan 3 por vencer</span>
+            </article>
+            <article class="tarjeta-metrica">
+              <small>Cumplimiento promedio</small>
+              <strong>94%</strong>
+              <span class="variacion texto-verde">Meta ≥ 90%</span>
+            </article>
+            <article class="tarjeta-metrica tarjeta-metrica--alerta">
+              <small>Empresas en riesgo</small>
+              <strong>2</strong>
+              <span class="variacion texto-peligro">Ver alertas</span>
+            </article>
+          </section>
+
+          <section class="panel-doble">
+            <form class="tarjeta-formulario" id="formulario-reporte" novalidate>
+              <header style="margin-bottom: 1.5rem;">
+                <h3 style="font-size: 1.1rem;">Registrar reporte de cumplimiento</h3>
+                <p style="font-size: 0.88rem;">Compare los resultados reales contra los compromisos iniciales.</p>
+              </header>
+
+              <div class="formulario-grid">
+                <div class="campo campo--completo">
+                  <label for="empresa-reporte">Empresa <span class="obligatorio">*</span></label>
+                  <select id="empresa-reporte" name="empresa" required>
+                    <option>Tech Solutions CR</option>
+                    <option>DataCore Labs</option>
+                    <option>BioVida CR</option>
+                    <option>AgroExport SA</option>
+                    <option>Textiles del Este</option>
+                  </select>
+                </div>
+
+                <div class="campo">
+                  <label for="periodo-reporte">Período <span class="obligatorio">*</span></label>
+                  <select id="periodo-reporte" name="periodo" required>
+                    <option>2026-Q2</option>
+                    <option>2026-Q1</option>
+                    <option>2025-Q4</option>
+                  </select>
+                </div>
+
+                <div class="campo">
+                  <label for="inversion-real">Inversión real acumulada (USD) <span class="obligatorio">*</span></label>
+                  <input type="number" id="inversion-real" name="inversion_real" min="0" step="10000" placeholder="1600000" required />
+                </div>
+
+                <div class="campo">
+                  <label for="empleos-actuales">Empleos actuales <span class="obligatorio">*</span></label>
+                  <input type="number" id="empleos-actuales" name="empleos_actuales" min="0" step="1" placeholder="80" required />
+                </div>
+
+                <div class="campo campo--completo">
+                  <label for="comentario-reporte">Observaciones</label>
+                  <textarea id="comentario-reporte" name="comentario" placeholder="Contexto del período, planes de contratación, ampliaciones…"></textarea>
+                </div>
+              </div>
+
+              <div class="grupo-botones">
+                <a class="boton boton--fantasma" href="../admin/admin.html">Cancelar</a>
+                <button class="boton boton--primario" type="submit">Guardar reporte</button>
+              </div>
+
+              <div class="aviso aviso--alerta mt-3">
+                <svg class="icono-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                <p><strong>RF-08 · Alertas automáticas.</strong> Si la inversión o los empleos reales quedan por debajo del compromiso, el sistema generará una alerta de desviación en el panel correspondiente.</p>
+              </div>
+            </form>
+
+            <article class="tarjeta">
+              <header class="tarjeta__cabecera">
+                <h3>Últimos reportes</h3>
+                <a class="boton boton--fantasma boton--sm" href="alertas.html">Ver alertas</a>
+              </header>
+              <div class="tarjeta__cuerpo tabla-contenedor">
+                <table class="tabla" style="min-width: 480px;">
+                  <thead>
+                    <tr>
+                      <th scope="col">Empresa</th>
+                      <th scope="col">Período</th>
+                      <th scope="col">Inversión real</th>
+                      <th scope="col">Empleos</th>
+                      <th scope="col">Estado</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="celda-principal">Tech Solutions CR</td>
+                      <td>2026-Q2</td>
+                      <td class="celda-numero">$1 600 000</td>
+                      <td class="celda-numero">80</td>
+                      <td><span class="insignia insignia--verde">Cumple</span></td>
+                    </tr>
+                    <tr>
+                      <td class="celda-principal">BioVida CR</td>
+                      <td>2026-Q2</td>
+                      <td class="celda-numero">$2 950 000</td>
+                      <td class="celda-numero">195</td>
+                      <td><span class="insignia insignia--verde">Cumple</span></td>
+                    </tr>
+                    <tr>
+                      <td class="celda-principal">AgroExport SA</td>
+                      <td>2026-Q2</td>
+                      <td class="celda-numero">$410 000</td>
+                      <td class="celda-numero">36</td>
+                      <td><span class="insignia insignia--naranja">Advertencia</span></td>
+                    </tr>
+                    <tr>
+                      <td class="celda-principal">Textiles del Este</td>
+                      <td>2026-Q2</td>
+                      <td class="celda-numero">$520 000</td>
+                      <td class="celda-numero">22</td>
+                      <td><span class="insignia insignia--roja">Desviación</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </article>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <script src="../../js/admin/admin.js" defer></script>
+  </body>
+</html>

@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Acceso a la plataforma ZoFranca CR." />
+    <title>Iniciar sesión | ZoFranca CR</title>
+    <link rel="stylesheet" href="../../css/variables.css" />
+    <link rel="stylesheet" href="../../css/global.css" />
+    <link rel="stylesheet" href="../../css/components.css" />
+    <link rel="stylesheet" href="../../css/login.css" />
+  </head>
+  <body>
+    <a class="volver-inicio" href="../../../index.html">
+      <svg class="icono-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+      Volver al inicio
+    </a>
+
+    <main class="pagina-auth">
+      <section class="tarjeta-auth" aria-labelledby="titulo-auth">
+        <header class="tarjeta-auth__marca">
+          <span class="marca__logo">ZF</span>
+          <h1 id="titulo-auth">Bienvenido a ZoFranca CR</h1>
+          <p>Ingrese con su cuenta para gestionar solicitudes y cumplimiento.</p>
+        </header>
+
+        <form class="formulario-auth" id="formulario-acceso" novalidate>
+          <fieldset class="roles-acceso">
+            <legend class="saltar-a">Tipo de perfil</legend>
+            <label>
+              <input type="radio" name="rol" value="analista" checked />
+              Analista ZF
+            </label>
+            <label>
+              <input type="radio" name="rol" value="empresa" />
+              Empresa
+            </label>
+          </fieldset>
+
+          <div class="campo">
+            <label for="correo">Correo electrónico</label>
+            <input type="email" id="correo" name="correo" placeholder="nombre@empresa.cr" autocomplete="email" required />
+          </div>
+
+          <div class="campo">
+            <label for="password">Contraseña</label>
+            <div class="campo-password">
+              <input type="password" id="password" name="password" placeholder="••••••••" autocomplete="current-password" minlength="6" required />
+              <button type="button" class="alternar-password" id="alternar-password" aria-label="Mostrar contraseña" aria-pressed="false">
+                <svg class="icono-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="fila-opciones">
+            <label>
+              <input type="checkbox" name="recordar" />
+              Recordarme
+            </label>
+            <a href="#recuperar">¿Olvidó su contraseña?</a>
+          </div>
+
+          <button type="submit" class="boton boton--primario boton--bloque" id="boton-acceso">Iniciar sesión</button>
+
+          <p class="estado-carga" id="estado-carga" role="status">
+            <span class="girador" aria-hidden="true"></span>
+            Validando credenciales…
+          </p>
+        </form>
+
+        <p class="pie-auth">¿Aún no tiene cuenta? <a href="../empresas/solicitud.html">Cree una solicitud de instalación</a></p>
+      </section>
+    </main>
+
+    <script src="../../js/login/login.js" defer></script>
+  </body>
+</html>

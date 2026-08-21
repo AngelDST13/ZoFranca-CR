@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Directorio de empresas y solicitudes del régimen de ZoFranca CR." />
+    <title>Empresas | ZoFranca CR</title>
+    <link rel="stylesheet" href="../../css/variables.css" />
+    <link rel="stylesheet" href="../../css/global.css" />
+    <link rel="stylesheet" href="../../css/components.css" />
+    <link rel="stylesheet" href="../../css/dashboard.css" />
+  </head>
+  <body>
+    <a class="saltar-a" href="#contenido-principal">Saltar al contenido</a>
+
+    <div class="app">
+      <aside class="barra-lateral" id="barra-lateral">
+        <a class="marca" href="../../../index.html">
+          <span class="marca__logo">ZF</span>
+          <span>ZoFranca CR<small>Zonas Francas · Costa Rica</small></span>
+        </a>
+
+        <nav class="navegacion-lateral" aria-label="Navegación del panel">
+          <p class="navegacion-lateral__titulo">Principal</p>
+          <a class="enlace-lateral" href="../admin/admin.html">
+            <svg class="icono-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+            Panel general
+          </a>
+          <a class="enlace-lateral enlace-lateral--activo" href="empresas.html" aria-current="page">
+            <svg class="icono-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 21v-6h6v6"/><path d="M9 10h.01M15 10h.01"/></svg>
+            Empresas
+            <span class="contador">12</span>
+          </a>
+
+          <p class="navegacion-lateral__titulo">Gestión</p>
+          <a class="enlace-lateral" href="solicitud.html">
+            <svg class="icono-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+            Nueva solicitud
+          </a>
+          <a class="enlace-lateral" href="../admin/cumplimiento.html">
+            <svg class="icono-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+            Cumplimiento
+          </a>
+          <a class="enlace-lateral" href="../admin/alertas.html">
+            <svg class="icono-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            Alertas
+            <span class="contador">3</span>
+          </a>
+        </nav>
+
+        <div class="tarjeta-usuario">
+          <span class="avatar">MA</span>
+          <div>
+            <strong>Marta Arroyo</strong>
+            <small>Analista senior</small>
+          </div>
+          <a class="enlace-lateral" href="../../../index.html" title="Cerrar sesión" style="margin-left:auto; padding:0.5rem;">
+            <svg class="icono-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+          </a>
+        </div>
+      </aside>
+
+      <div class="fondo-menu" id="fondo-menu"></div>
+
+      <div class="app-contenido">
+        <header class="cabecera-app">
+          <button class="boton-menu" id="boton-menu" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="barra-lateral">
+            <svg class="icono-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+          </button>
+          <div class="cabecera-app__titulo">
+            <h2>Empresas y solicitudes</h2>
+            <p>Zona Franca Metropolitana · Régimen activo</p>
+          </div>
+          <div class="cabecera-app__acciones">
+            <a class="boton boton--primario boton--sm" href="solicitud.html">+ Nueva solicitud</a>
+          </div>
+        </header>
+
+        <main class="contenido-principal" id="contenido-principal">
+          <section class="tarjeta">
+            <div class="tarjeta__cuerpo formulario-grid" style="align-items: end;">
+              <div class="campo campo--completo">
+                <label for="buscador-empresas">Buscar empresa</label>
+                <input type="search" id="buscador-empresas" placeholder="Buscar por nombre o sector…" />
+              </div>
+              <div class="campo">
+                <label for="filtro-sector">Sector</label>
+                <select id="filtro-sector">
+                  <option>Todos los sectores</option>
+                  <option>Tecnología</option>
+                  <option>Manufactura</option>
+                  <option>Servicios</option>
+                  <option>Ciencias de la Vida</option>
+                </select>
+              </div>
+              <div class="campo">
+                <label for="filtro-estado">Estado</label>
+                <select id="filtro-estado">
+                  <option>Todos los estados</option>
+                  <option>Aprobada</option>
+                  <option>En evaluación</option>
+                  <option>Pendiente</option>
+                  <option>Sugerida rechazo</option>
+                </select>
+              </div>
+              <button class="boton boton--secundario" type="button">Aplicar filtros</button>
+            </div>
+          </section>
+
+          <section aria-label="Listado de empresas" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.25rem;">
+            <article class="tarjeta">
+              <div class="tarjeta__cuerpo">
+                <header style="display:flex; align-items:center; gap:0.85rem; margin-bottom:1rem;">
+                  <span class="avatar avatar--azul">TS</span>
+                  <div>
+                    <h3 style="font-size:1.02rem;">Tech Solutions CR</h3>
+                    <small class="texto-suave">Tecnología · Ingreso 2026</small>
+                  </div>
+                  <span class="insignia insignia--verde" style="margin-left:auto;">Aprobada</span>
+                </header>
+                <div class="columnas-detalle" style="grid-template-columns: repeat(3, 1fr); margin-bottom:1.1rem;">
+                  <div class="dato-detalle"><small>Inversión</small><strong>$1.5M</strong></div>
+                  <div class="dato-detalle"><small>Empleos</small><strong>75</strong></div>
+                  <div class="dato-detalle"><small>Puntaje IA</small><strong class="texto-verde">85</strong></div>
+                </div>
+                <a class="boton boton--secundario boton--bloque boton--sm" href="detalle-solicitud.html">Ver expediente completo</a>
+              </div>
+            </article>
+
+            <article class="tarjeta">
+              <div class="tarjeta__cuerpo">
+                <header style="display:flex; align-items:center; gap:0.85rem; margin-bottom:1rem;">
+                  <span class="avatar avatar--azul">DC</span>
+                  <div>
+                    <h3 style="font-size:1.02rem;">DataCore Labs</h3>
+                    <small class="texto-suave">Servicios · Solicitud 2026</small>
+                  </div>
+                  <span class="insignia insignia--azul" style="margin-left:auto;">En evaluación</span>
+                </header>
+                <div class="columnas-detalle" style="grid-template-columns: repeat(3, 1fr); margin-bottom:1.1rem;">
+                  <div class="dato-detalle"><small>Inversión</small><strong>$2.3M</strong></div>
+                  <div class="dato-detalle"><small>Empleos</small><strong>120</strong></div>
+                  <div class="dato-detalle"><small>Puntaje IA</small><strong class="texto-verde">92</strong></div>
+                </div>
+                <a class="boton boton--secundario boton--bloque boton--sm" href="detalle-solicitud.html">Ver expediente completo</a>
+              </div>
+            </article>
+
+            <article class="tarjeta">
+              <div class="tarjeta__cuerpo">
+                <header style="display:flex; align-items:center; gap:0.85rem; margin-bottom:1rem;">
+                  <span class="avatar">BV</span>
+                  <div>
+                    <h3 style="font-size:1.02rem;">BioVida CR</h3>
+                    <small class="texto-suave">Ciencias de la Vida · Ingreso 2025</small>
+                  </div>
+                  <span class="insignia insignia--verde" style="margin-left:auto;">Aprobada</span>
+                </header>
+                <div class="columnas-detalle" style="grid-template-columns: repeat(3, 1fr); margin-bottom:1.1rem;">
+                  <div class="dato-detalle"><small>Inversión</small><strong>$3.1M</strong></div>
+                  <div class="dato-detalle"><small>Empleos</small><strong>200</strong></div>
+                  <div class="dato-detalle"><small>Puntaje IA</small><strong class="texto-verde">88</strong></div>
+                </div>
+                <a class="boton boton--secundario boton--bloque boton--sm" href="detalle-solicitud.html">Ver expediente completo</a>
+              </div>
+            </article>
+
+            <article class="tarjeta">
+              <div class="tarjeta__cuerpo">
+                <header style="display:flex; align-items:center; gap:0.85rem; margin-bottom:1rem;">
+                  <span class="avatar avatar--azul">AE</span>
+                  <div>
+                    <h3 style="font-size:1.02rem;">AgroExport SA</h3>
+                    <small class="texto-suave">Manufactura · Solicitud 2026</small>
+                  </div>
+                  <span class="insignia insignia--naranja" style="margin-left:auto;">Revisar</span>
+                </header>
+                <div class="columnas-detalle" style="grid-template-columns: repeat(3, 1fr); margin-bottom:1.1rem;">
+                  <div class="dato-detalle"><small>Inversión</small><strong>$980k</strong></div>
+                  <div class="dato-detalle"><small>Empleos</small><strong>42</strong></div>
+                  <div class="dato-detalle"><small>Puntaje IA</small><strong class="texto-suave">58</strong></div>
+                </div>
+                <a class="boton boton--secundario boton--bloque boton--sm" href="detalle-solicitud.html">Ver expediente completo</a>
+              </div>
+            </article>
+
+            <article class="tarjeta">
+              <div class="tarjeta__cuerpo">
+                <header style="display:flex; align-items:center; gap:0.85rem; margin-bottom:1rem;">
+                  <span class="avatar" style="background: var(--zf-peligro);">TE</span>
+                  <div>
+                    <h3 style="font-size:1.02rem;">Textiles del Este</h3>
+                    <small class="texto-suave">Manufactura · Solicitud 2026</small>
+                  </div>
+                  <span class="insignia insignia--roja" style="margin-left:auto;">Sugerida rechazo</span>
+                </header>
+                <div class="columnas-detalle" style="grid-template-columns: repeat(3, 1fr); margin-bottom:1.1rem;">
+                  <div class="dato-detalle"><small>Inversión</small><strong>$650k</strong></div>
+                  <div class="dato-detalle"><small>Empleos</small><strong>30</strong></div>
+                  <div class="dato-detalle"><small>Puntaje IA</small><strong class="texto-peligro">34</strong></div>
+                </div>
+                <a class="boton boton--secundario boton--bloque boton--sm" href="detalle-solicitud.html">Ver expediente completo</a>
+              </div>
+            </article>
+
+            <article class="tarjeta" style="display:flex; align-items:center; justify-content:center; border-style:dashed;">
+              <div class="tarjeta__cuerpo texto-centrado">
+                <p class="mt-1 mb-0">¿Una nueva empresa desea instalarse?</p>
+                <a class="boton boton--primario mt-2" href="solicitud.html">Crear solicitud de instalación</a>
+              </div>
+            </article>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <script src="../../js/empresas/empresas.js" defer></script>
+  </body>
+</html>

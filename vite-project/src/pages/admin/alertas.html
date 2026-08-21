@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Panel de alertas por desviación de compromisos en ZoFranca CR." />
+    <title>Alertas | ZoFranca CR</title>
+    <link rel="stylesheet" href="../../css/variables.css" />
+    <link rel="stylesheet" href="../../css/global.css" />
+    <link rel="stylesheet" href="../../css/components.css" />
+    <link rel="stylesheet" href="../../css/dashboard.css" />
+  </head>
+  <body>
+    <a class="saltar-a" href="#contenido-principal">Saltar al contenido</a>
+
+    <div class="app">
+      <aside class="barra-lateral" id="barra-lateral">
+        <a class="marca" href="../../../index.html">
+          <span class="marca__logo">ZF</span>
+          <span>ZoFranca CR<small>Zonas Francas · Costa Rica</small></span>
+        </a>
+
+        <nav class="navegacion-lateral" aria-label="Navegación del panel">
+          <p class="navegacion-lateral__titulo">Principal</p>
+          <a class="enlace-lateral" href="../admin/admin.html">
+            <svg class="icono-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+            Panel general
+          </a>
+          <a class="enlace-lateral" href="../empresas/empresas.html">
+            <svg class="icono-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 21v-6h6v6"/><path d="M9 10h.01M15 10h.01"/></svg>
+            Empresas
+            <span class="contador">12</span>
+          </a>
+
+          <p class="navegacion-lateral__titulo">Gestión</p>
+          <a class="enlace-lateral" href="../empresas/solicitud.html">
+            <svg class="icono-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+            Nueva solicitud
+          </a>
+          <a class="enlace-lateral" href="cumplimiento.html">
+            <svg class="icono-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+            Cumplimiento
+          </a>
+          <a class="enlace-lateral enlace-lateral--activo" href="alertas.html" aria-current="page">
+            <svg class="icono-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            Alertas
+            <span class="contador">3</span>
+          </a>
+        </nav>
+
+        <div class="tarjeta-usuario">
+          <span class="avatar">MA</span>
+          <div>
+            <strong>Marta Arroyo</strong>
+            <small>Analista senior</small>
+          </div>
+          <a class="enlace-lateral" href="../../../index.html" title="Cerrar sesión" style="margin-left:auto; padding:0.5rem;">
+            <svg class="icono-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+          </a>
+        </div>
+      </aside>
+
+      <div class="fondo-menu" id="fondo-menu"></div>
+
+      <div class="app-contenido">
+        <header class="cabecera-app">
+          <button class="boton-menu" id="boton-menu" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="barra-lateral">
+            <svg class="icono-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+          </button>
+          <div class="cabecera-app__titulo">
+            <h2>Alertas de incumplimiento</h2>
+            <p>RF-08 · Desviaciones detectadas contra los compromisos iniciales</p>
+          </div>
+          <div class="cabecera-app__acciones"></div>
+        </header>
+
+        <main class="contenido-principal" id="contenido-principal">
+          <section style="display:flex; gap:0.6rem; flex-wrap:wrap;">
+            <span class="chip">Todas (3)</span>
+            <span class="chip" style="border-color: rgba(192,57,43,0.4); color: var(--zf-peligro); background: var(--zf-peligro-suave);">Críticas (1)</span>
+            <span class="chip" style="border-color: rgba(230,126,34,0.45); color: var(--zf-alerta); background: var(--zf-alerta-suave);">Advertencias (1)</span>
+            <span class="chip" style="border-color: rgba(40,167,69,0.35); color: var(--zofranca-verde); background: var(--zf-verde-suave);">Resueltas (1)</span>
+          </section>
+
+          <section class="lista-alertas" aria-label="Listado de alertas">
+            <article class="tarjeta-alerta tarjeta-alerta--critica">
+              <span class="tarjeta-alerta__icono">
+                <svg class="icono-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+              </span>
+              <div class="tarjeta-alerta__cuerpo">
+                <h3>Desviación crítica en compromiso laboral · Textiles del Este</h3>
+                <p>La empresa reporta <strong>22 empleos</strong> frente a un compromiso de <strong>30 puestos</strong> para 2026-Q2 (−27%). La inversión real también se encuentra al 80% de lo pactado.</p>
+                <div class="comparativa__fila mt-1" style="max-width: 420px;">
+                  <div class="barra-progreso" role="img" aria-label="Cumplimiento de empleo al 73 por ciento">
+                    <div class="barra-progreso__relleno barra-progreso__relleno--baja" style="width:73%"></div>
+                  </div>
+                </div>
+                <small class="meta-alerta">ALERTA-2026-003 · Generada el 19/08/2026 · Período 2026-Q2</small>
+                <div class="tarjeta-alerta__pie">
+                  <a class="boton boton--secundario boton--sm" href="../empresas/detalle-solicitud.html">Ver expediente</a>
+                  <button class="boton boton--fantasma boton--sm" type="button">Marcar gestionada</button>
+                </div>
+              </div>
+              <span class="insignia insignia--roja">Crítica</span>
+            </article>
+
+            <article class="tarjeta-alerta">
+              <span class="tarjeta-alerta__icono">
+                <svg class="icono-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+              </span>
+              <div class="tarjeta-alerta__cuerpo">
+                <h3>Ritmo de inversión por debajo del plan · AgroExport SA</h3>
+                <p>Inversión real acumulada de <strong>$410 000</strong> sobre los <strong>$980 000</strong> comprometidos al cierre del semestre. Se recomienda solicitar plan de recuperación.</p>
+                <div class="comparativa__fila mt-1" style="max-width: 420px;">
+                  <div class="barra-progreso" role="img" aria-label="Avance de inversión al 42 por ciento">
+                    <div class="barra-progreso__relleno barra-progreso__relleno--media" style="width:42%"></div>
+                  </div>
+                </div>
+                <small class="meta-alerta">ALERTA-2026-002 · Generada el 18/08/2026 · Período 2026-Q2</small>
+                <div class="tarjeta-alerta__pie">
+                  <a class="boton boton--secundario boton--sm" href="../empresas/detalle-solicitud.html">Ver expediente</a>
+                  <button class="boton boton--fantasma boton--sm" type="button">Marcar gestionada</button>
+                </div>
+              </div>
+              <span class="insignia insignia--naranja">Advertencia</span>
+            </article>
+
+            <article class="tarjeta-alerta tarjeta-alerta--resuelta">
+              <span class="tarjeta-alerta__icono">
+                <svg class="icono-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              </span>
+              <div class="tarjeta-alerta__cuerpo">
+                <h3>Cumplimiento verificado · Tech Solutions CR</h3>
+                <p>El reporte 2026-Q2 confirma <strong>$1 600 000</strong> invertidos y <strong>80 empleos</strong>, superando ambos compromisos. La alerta preventiva fue cerrada automáticamente.</p>
+                <small class="meta-alerta">ALERTA-2026-001 · Resuelta el 20/08/2026 · Período 2026-Q2</small>
+                <div class="tarjeta-alerta__pie">
+                  <a class="boton boton--fantasma boton--sm" href="../empresas/detalle-solicitud.html">Ver expediente</a>
+                </div>
+              </div>
+              <span class="insignia insignia--verde">Resuelta</span>
+            </article>
+          </section>
+
+          <section class="aviso aviso--info">
+            <svg class="icono-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+            <p><strong>Datos estáticos.</strong> En producción, estas alertas se generan automáticamente cuando los reportes reales quedan por debajo de los compromisos registrados (RF-06 / RF-08).</p>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <script src="../../js/admin/admin.js" defer></script>
+  </body>
+</html>

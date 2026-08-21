@@ -1,13 +1,209 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>vite-project</title>
+    <meta name="description" content="ZoFranca CR: plataforma para automatizar la recepción, pre-evaluación por IA y seguimiento de cumplimiento de empresas en el régimen de zonas francas de Costa Rica." />
+    <title>ZoFranca CR | Plataforma de Gestión para Zonas Francas</title>
+    <link rel="stylesheet" href="src/css/variables.css" />
+    <link rel="stylesheet" href="src/css/global.css" />
+    <link rel="stylesheet" href="src/css/components.css" />
+    <link rel="stylesheet" href="src/css/landing.css" />
   </head>
   <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.js"></script>
+    <a class="saltar-a" href="#contenido">Saltar al contenido</a>
+
+    <header class="cabecera-landing">
+      <div class="contenedor cabecera-landing__interior">
+        <a class="marca" href="index.html">
+          <span class="marca__logo">ZF</span>
+          <span>ZoFranca CR<small>Zonas Francas · Costa Rica</small></span>
+        </a>
+        <nav class="nav-landing" aria-label="Navegación principal">
+          <a href="#inicio">Inicio</a>
+          <a href="#caracteristicas">Características</a>
+          <a href="#proceso">Proceso</a>
+          <a class="boton boton--primario boton--sm" href="src/pages/login/login.html">Iniciar sesión</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="contenido">
+      <section class="heroe" id="inicio">
+        <div class="contenedor heroe__rejilla">
+          <div class="heroe__contenido">
+            <span class="chip">Régimen de Zonas Francas · Costa Rica</span>
+            <h1>La gestión de <em>zonas francas</em>, digital y asistida por IA</h1>
+            <p>
+              Recepciona solicitudes de instalación, pre-clasifícalas con inteligencia artificial
+              y da seguimiento al cumplimiento de compromisos de inversión y empleo desde un solo panel.
+            </p>
+            <div class="heroe__acciones">
+              <a class="boton boton--primario" href="src/pages/login/login.html">Comenzar ahora</a>
+              <a class="boton boton--fantasma" href="#caracteristicas">Conocer características</a>
+            </div>
+            <div class="heroe__mini-datos">
+              <div class="heroe__mini-dato"><strong>100%</strong><span>Solicitudes digitales</span></div>
+              <div class="heroe__mini-dato"><strong>0–100</strong><span>Puntaje de afinidad IA</span></div>
+              <div class="heroe__mini-dato"><strong>94%</strong><span>Cumplimiento promedio</span></div>
+            </div>
+          </div>
+          <div class="heroe__visual">
+            <div class="heroe__tarjeta-imagen">
+              <img src="src/assets/hero.png" alt="Vista del panel corporativo de ZoFranca CR" />
+            </div>
+            <div class="heroe__flotante heroe__flotante--ia">
+              <span class="punto-estado"></span>
+              <span>Puntaje IA: 85<small>Sugerencia: Recomendada</small></span>
+            </div>
+            <div class="heroe__flotante heroe__flotante--empleos">
+              <svg class="icono-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              <span>+467<small>Empleos proyectados</small></span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="bandera-stats" aria-label="Indicadores de la plataforma">
+        <div class="contenedor bandera-stats__rejilla">
+          <div><strong>12</strong><span>Solicitudes activas</span></div>
+          <div><strong>$8.5M</strong><span>Inversión comprometida</span></div>
+          <div><strong>467</strong><span>Empleos proyectados</span></div>
+          <div><strong>24/7</strong><span>Monitoreo de desviaciones</span></div>
+        </div>
+      </section>
+
+      <section class="seccion" id="caracteristicas">
+        <div class="contenedor">
+          <header class="seccion-cabecera">
+            <span class="etiqueta-seccion">Características</span>
+            <h2>Todo el ciclo de vida de la empresa inversionista</h2>
+            <p>Desde la solicitud de instalación hasta los reportes periódicos de cumplimiento, con la IA como primera línea de análisis y el criterio humano como decisión final.</p>
+          </header>
+          <div class="rejilla-caracteristicas">
+            <article class="tarjeta-caracteristica">
+              <span class="tarjeta-caracteristica__icono">
+                <svg class="icono-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+              </span>
+              <h3>Solicitud de instalación digital</h3>
+              <p>Formulario guiado con inversión, empleos proyectados y sector económico, sin trámites en papel.</p>
+              <span class="referencia-rf">RF-02</span>
+            </article>
+            <article class="tarjeta-caracteristica tarjeta-caracteristica--verde">
+              <span class="tarjeta-caracteristica__icono">
+                <svg class="icono-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg>
+              </span>
+              <h3>Pre-clasificación con IA</h3>
+              <p>Cada solicitud recibe un puntaje de afinidad de 0 a 100 con insignias de sugerencia automáticas.</p>
+              <span class="referencia-rf">RF-04 · RF-05</span>
+            </article>
+            <article class="tarjeta-caracteristica">
+              <span class="tarjeta-caracteristica__icono">
+                <svg class="icono-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="m16 11 2 2 4-4"/></svg>
+              </span>
+              <h3>Decisión final humana</h3>
+              <p>El analista revisa la justificación de la IA y mantiene siempre la última palabra sobre cada expediente.</p>
+              <span class="referencia-rf">RF-12</span>
+            </article>
+            <article class="tarjeta-caracteristica tarjeta-caracteristica--verde">
+              <span class="tarjeta-caracteristica__icono">
+                <svg class="icono-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              </span>
+              <h3>Monitoreo de cumplimiento</h3>
+              <p>Reportes periódicos que comparan inversión y empleo reales contra los compromisos iniciales.</p>
+              <span class="referencia-rf">RF-06 · RF-08</span>
+            </article>
+            <article class="tarjeta-caracteristica">
+              <span class="tarjeta-caracteristica__icono">
+                <svg class="icono-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              </span>
+              <h3>Evaluación masiva en paralelo</h3>
+              <p>Lotes completos de solicitudes se procesan de forma concurrente sin bloquear la interfaz.</p>
+              <span class="referencia-rf">RF-13 · RNF-01</span>
+            </article>
+            <article class="tarjeta-caracteristica tarjeta-caracteristica--verde">
+              <span class="tarjeta-caracteristica__icono">
+                <svg class="icono-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+              </span>
+              <h3>Datos centralizados</h3>
+              <p>Persistencia confiable de solicitudes, reportes e historial de decisiones en una API REST local.</p>
+              <span class="referencia-rf">RNF-06</span>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="seccion" id="proceso" style="background: var(--zofranca-blanco);">
+        <div class="contenedor">
+          <header class="seccion-cabecera">
+            <span class="etiqueta-seccion">¿Cómo funciona?</span>
+            <h2>Tres pasos hacia la instalación</h2>
+          </header>
+          <ol class="pasos">
+            <li class="paso paso--azul">
+              <h3>La empresa aplica</h3>
+              <p>Registra su propuesta con monto de inversión, empleos proyectados y sector dentro de la zona franca.</p>
+            </li>
+            <li class="paso paso--verde">
+              <h3>La IA pre-clasifica</h3>
+              <p>El motor de evaluación genera un puntaje de afinidad y sugiere: recomendada, revisar o rechazada.</p>
+            </li>
+            <li class="paso">
+              <h3>El analista decide</h3>
+              <p>Revisa el expediente completo, contrasta la sugerencia de la IA y emite la resolución final.</p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="seccion">
+        <div class="contenedor">
+          <div class="llamado-accion">
+            <h2>Agilice la llegada de inversión a su zona franca</h2>
+            <p>Acceda al panel del analista o cree una nueva solicitud de instalación en minutos.</p>
+            <div class="grupo-botones" style="justify-content: center;">
+              <a class="boton boton--blanco" href="src/pages/login/login.html">Iniciar sesión</a>
+              <a class="boton boton--contorno" href="src/pages/admin/admin.html">Ver panel del analista</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="pie-landing" id="contacto">
+      <div class="contenedor">
+        <div class="pie-landing__rejilla">
+          <div>
+            <a class="marca" href="index.html">
+              <span class="marca__logo">ZF</span>
+              <span>ZoFranca CR<small>Zonas Francas · Costa Rica</small></span>
+            </a>
+            <p>Plataforma de gestión y cumplimiento para el régimen de zonas francas de Costa Rica.</p>
+          </div>
+          <nav aria-label="Enlaces de plataforma">
+            <h4>Plataforma</h4>
+            <ul>
+              <li><a href="src/pages/admin/admin.html">Panel del analista</a></li>
+              <li><a href="src/pages/empresas/empresas.html">Empresas</a></li>
+              <li><a href="src/pages/empresas/solicitud.html">Nueva solicitud</a></li>
+              <li><a href="src/pages/admin/alertas.html">Alertas</a></li>
+            </ul>
+          </nav>
+          <div>
+            <h4>Contacto</h4>
+            <ul>
+              <li><a href="#contacto">San José, Costa Rica</a></li>
+              <li><a href="#contacto">info@zofranca.cr</a></li>
+              <li><a href="#contacto">+506 4000 0000</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="pie-landing__legal">
+          <span>© 2026 ZoFranca CR. Todos los derechos reservados.</span>
+          <span>Fase 1 · Prototipo visual</span>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>

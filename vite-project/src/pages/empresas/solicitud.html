@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Formulario de solicitud de instalación en el régimen de zonas francas." />
+    <title>Nueva solicitud | ZoFranca CR</title>
+    <link rel="stylesheet" href="../../css/variables.css" />
+    <link rel="stylesheet" href="../../css/global.css" />
+    <link rel="stylesheet" href="../../css/components.css" />
+    <link rel="stylesheet" href="../../css/dashboard.css" />
+  </head>
+  <body>
+    <a class="saltar-a" href="#contenido-principal">Saltar al contenido</a>
+
+    <div class="app">
+      <aside class="barra-lateral" id="barra-lateral">
+        <a class="marca" href="../../../index.html">
+          <span class="marca__logo">ZF</span>
+          <span>ZoFranca CR<small>Zonas Francas · Costa Rica</small></span>
+        </a>
+
+        <nav class="navegacion-lateral" aria-label="Navegación del panel">
+          <p class="navegacion-lateral__titulo">Principal</p>
+          <a class="enlace-lateral" href="../admin/admin.html">
+            <svg class="icono-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+            Panel general
+          </a>
+          <a class="enlace-lateral" href="empresas.html">
+            <svg class="icono-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 21v-6h6v6"/><path d="M9 10h.01M15 10h.01"/></svg>
+            Empresas
+            <span class="contador">12</span>
+          </a>
+
+          <p class="navegacion-lateral__titulo">Gestión</p>
+          <a class="enlace-lateral enlace-lateral--activo" href="solicitud.html" aria-current="page">
+            <svg class="icono-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+            Nueva solicitud
+          </a>
+          <a class="enlace-lateral" href="../admin/cumplimiento.html">
+            <svg class="icono-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+            Cumplimiento
+          </a>
+          <a class="enlace-lateral" href="../admin/alertas.html">
+            <svg class="icono-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            Alertas
+            <span class="contador">3</span>
+          </a>
+        </nav>
+
+        <div class="tarjeta-usuario">
+          <span class="avatar">MA</span>
+          <div>
+            <strong>Marta Arroyo</strong>
+            <small>Analista senior</small>
+          </div>
+          <a class="enlace-lateral" href="../../../index.html" title="Cerrar sesión" style="margin-left:auto; padding:0.5rem;">
+            <svg class="icono-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+          </a>
+        </div>
+      </aside>
+
+      <div class="fondo-menu" id="fondo-menu"></div>
+
+      <div class="app-contenido">
+        <header class="cabecera-app">
+          <button class="boton-menu" id="boton-menu" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="barra-lateral">
+            <svg class="icono-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+          </button>
+          <div class="cabecera-app__titulo">
+            <h2>Nueva solicitud de instalación</h2>
+            <p>RF-02 · Registro de inversión, empleos y sector</p>
+          </div>
+          <div class="cabecera-app__acciones"></div>
+        </header>
+
+        <main class="contenido-principal" id="contenido-principal">
+          <section class="panel-doble">
+            <form class="tarjeta-formulario" id="formulario-solicitud" novalidate>
+              <header style="margin-bottom: 1.5rem;">
+                <h3 style="font-size: 1.1rem;">Datos de la empresa solicitante</h3>
+                <p style="font-size: 0.88rem;">Los campos marcados con <span class="texto-peligro">*</span> son obligatorios.</p>
+              </header>
+
+              <div class="formulario-grid">
+                <div class="campo campo--completo">
+                  <label for="nombre-empresa">Nombre de la empresa <span class="obligatorio">*</span></label>
+                  <input type="text" id="nombre-empresa" name="empresa" placeholder="Ej.: Industrias del Sol SA" required />
+                </div>
+
+                <div class="campo">
+                  <label for="sector">Sector económico <span class="obligatorio">*</span></label>
+                  <select id="sector" name="sector" required>
+                    <option value="">Seleccione un sector…</option>
+                    <option>Tecnología</option>
+                    <option>Manufactura</option>
+                    <option>Servicios</option>
+                    <option>Ciencias de la Vida</option>
+                  </select>
+                  <p class="campo__ayuda">Sectores permitidos por la Zona Franca Metropolitana.</p>
+                </div>
+
+                <div class="campo">
+                  <label for="zona-franca">Zona franca <span class="obligatorio">*</span></label>
+                  <select id="zona-franca" name="zona_franca" required>
+                    <option>Zona Franca Metropolitana (activa)</option>
+                  </select>
+                </div>
+
+                <div class="campo">
+                  <label for="inversion">Inversión proyectada (USD) <span class="obligario obligatorio">*</span></label>
+                  <input type="number" id="inversion" name="inversion" min="1000000" step="50000" placeholder="1500000" required />
+                  <p class="campo__ayuda">Mínimo requerido: $1 000 000.</p>
+                </div>
+
+                <div class="campo">
+                  <label for="empleos">Empleos proyectados <span class="obligatorio">*</span></label>
+                  <input type="number" id="empleos" name="empleos" min="50" step="1" placeholder="75" required />
+                  <p class="campo__ayuda">Mínimo requerido: 50 puestos.</p>
+                </div>
+
+                <div class="campo">
+                  <label for="correo-empresa">Correo de contacto</label>
+                  <input type="email" id="correo-empresa" name="correo" placeholder="contacto@empresa.cr" />
+                </div>
+
+                <div class="campo campo--completo">
+                  <label for="descripcion">Descripción del proyecto</label>
+                  <textarea id="descripcion" name="descripcion" placeholder="Describa brevemente la operación, mercado objetivo y cadena de suministro…"></textarea>
+                </div>
+              </div>
+
+              <div class="grupo-botones">
+                <a class="boton boton--fantasma" href="empresas.html">Cancelar</a>
+                <button class="boton boton--primario" type="submit">Enviar solicitud</button>
+              </div>
+            </form>
+
+            <aside style="display: grid; gap: 1.25rem; align-content: start;">
+              <article class="vista-previa-ia">
+                <header style="display:flex; align-items:center; justify-content:space-between; gap:1rem; margin-bottom:1.25rem;">
+                  <h3 style="font-size: 1rem;">Pre-evaluación IA</h3>
+                  <span class="chip" style="background: rgba(255,255,255,0.12); border-color: transparent; color:#fff;">Simulada</span>
+                </header>
+                <div style="display:flex; align-items:center; gap:1.25rem; flex-wrap:wrap;">
+                  <div class="anillo-ia anillo-ia--claro" style="--valor:78;">
+                    <div class="anillo-ia__numero">
+                      <strong>78</strong>
+                      <span>Afinidad</span>
+                    </div>
+                  </div>
+                  <div>
+                    <span class="insignia insignia--verde">Sugerencia: Recomendada</span>
+                    <p style="color:rgba(255,255,255,0.75); font-size:0.85rem; margin-top:0.6rem; max-width:16rem;">
+                      Resultado estimado para los valores de ejemplo. Se recalcula al enviar la solicitud.
+                    </p>
+                  </div>
+                </div>
+                <div class="mt-2">
+                  <div class="criterio-ia">
+                    <span>Inversión ≥ $1 000 000</span>
+                    <span class="resultado resultado--cumple">Cumple</span>
+                  </div>
+                  <div class="criterio-ia">
+                    <span>Empleos ≥ 50</span>
+                    <span class="resultado resultado--cumple">Cumple</span>
+                  </div>
+                  <div class="criterio-ia">
+                    <span>Sector permitido en la zona</span>
+                    <span class="resultado resultado--cumple">Cumple</span>
+                  </div>
+                </div>
+              </article>
+
+              <article class="aviso aviso--info">
+                <svg class="icono-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                <p><strong>RF-12 · Decisión humana.</strong> El puntaje de IA es una pre-clasificación automática (RF-04). La aprobación o rechazo final siempre corresponde al analista de la zona franca.</p>
+              </article>
+            </aside>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <script src="../../js/empresas/empresas.js" defer></script>
+  </body>
+</html>

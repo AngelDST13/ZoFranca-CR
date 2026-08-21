@@ -1,0 +1,31 @@
+:root {
+  --zofranca-azul-real: #1F5D8E;   /* Botones principales, enlaces activos, acciones, bordes destacados */
+  --zofranca-azul-marino: #2C3E50; /* Sidebar, navegación, encabezados importantes, títulos */
+  --zofranca-verde: #28A745;       /* Estados aprobados, indicadores positivos, métricas favorables */
+  --zofranca-gris-medio: #6C757D;  /* Textos secundarios, iconos, bordes sutiles */
+  --zofranca-gris-claro: #F4F6F8;  /* Fondo general, áreas de trabajo, auth */
+  --zofranca-blanco: #FFFFFF;      /* Tarjetas, formularios, contenedores */
+
+  --zf-verde-suave: rgba(40, 167, 69, 0.12);
+  --zf-azul-real-suave: rgba(31, 93, 142, 0.1);
+  --zf-azul-marino-suave: rgba(44, 62, 80, 0.08);
+  --zf-borde: rgba(44, 62, 80, 0.12);
+
+  --zf-alerta: #E67E22;
+  --zf-alerta-suave: rgba(230, 126, 34, 0.14);
+  --zf-peligro: #C0392B;
+  --zf-peligro-suave: rgba(192, 57, 43, 0.12);
+
+  --zf-texto: var(--zofranca-azul-marino);
+  --zf-texto-suave: var(--zofranca-gris-medio);
+
+  --zf-radio-lg: 16px;
+  --zf-radio-md: 12px;
+  --zf-radio-sm: 8px;
+
+  --zf-sombra-sm: 0 1px 3px rgba(44, 62, 80, 0.08);
+  --zf-sombra-md: 0 8px 24px rgba(44, 62, 80, 0.1);
+  --zf-sombra-lg: 0 18px 48px rgba(44, 62, 80, 0.18);
+
+  --zf-transicion: 0.2s ease;
+}

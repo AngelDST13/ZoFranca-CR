@@ -1,0 +1,129 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background-color: var(--zofranca-gris-claro);
+  color: var(--zf-texto);
+  line-height: 1.6;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: var(--zofranca-azul-real);
+  text-decoration: none;
+  transition: color var(--zf-transicion);
+}
+
+a:hover {
+  color: var(--zofranca-azul-marino);
+}
+
+h1, h2, h3, h4 {
+  color: var(--zofranca-azul-marino);
+  line-height: 1.25;
+  font-weight: 700;
+}
+
+h1 { font-size: clamp(2rem, 4vw, 3rem); }
+h2 { font-size: clamp(1.5rem, 2.5vw, 2.1rem); }
+h3 { font-size: 1.25rem; }
+
+p {
+  color: var(--zf-texto-suave);
+}
+
+ul, ol {
+  list-style: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+input, select, textarea {
+  font-family: inherit;
+  font-size: 1rem;
+  color: var(--zf-texto);
+}
+
+:focus-visible {
+  outline: 3px solid var(--zofranca-azul-real);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+::selection {
+  background: var(--zofranca-azul-real);
+  color: var(--zofranca-blanco);
+}
+
+.contenedor {
+  width: min(1160px, 92%);
+  margin-inline: auto;
+}
+
+.seccion {
+  padding-block: clamp(3rem, 7vw, 5.5rem);
+}
+
+.seccion-cabecera {
+  max-width: 640px;
+  margin-bottom: 2.5rem;
+}
+
+.seccion-cabecera p {
+  margin-top: 0.75rem;
+  font-size: 1.05rem;
+}
+
+.etiqueta-seccion {
+  display: inline-block;
+  background: var(--zf-azul-real-suave);
+  color: var(--zofranca-azul-real);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.9rem;
+  border-radius: 999px;
+  margin-bottom: 1rem;
+}
+
+.texto-suave { color: var(--zf-texto-suave); }
+.texto-verde { color: var(--zofranca-verde); }
+.texto-peligro { color: var(--zf-peligro); }
+.texto-centrado { text-align: center; }
+.mt-1 { margin-top: 0.5rem; }
+.mt-2 { margin-top: 1rem; }
+.mt-3 { margin-top: 1.75rem; }
+
+.saltar-a {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  background: var(--zofranca-azul-marino);
+  color: var(--zofranca-blanco);
+  padding: 0.6rem 1rem;
+  z-index: 200;
+}
+
+.saltar-a:focus {
+  left: 0.5rem;
+}

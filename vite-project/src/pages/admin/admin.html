@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Panel del analista de ZoFranca CR: métricas, solicitudes y decisiones." />
+    <title>Panel del analista | ZoFranca CR</title>
+    <link rel="stylesheet" href="../../css/variables.css" />
+    <link rel="stylesheet" href="../../css/global.css" />
+    <link rel="stylesheet" href="../../css/components.css" />
+    <link rel="stylesheet" href="../../css/dashboard.css" />
+  </head>
+  <body>
+    <a class="saltar-a" href="#contenido-principal">Saltar al contenido</a>
+
+    <div class="app">
+      <aside class="barra-lateral" id="barra-lateral">
+        <a class="marca" href="../../../index.html">
+          <span class="marca__logo">ZF</span>
+          <span>ZoFranca CR<small>Zonas Francas · Costa Rica</small></span>
+        </a>
+
+        <nav class="navegacion-lateral" aria-label="Navegación del panel">
+          <p class="navegacion-lateral__titulo">Principal</p>
+          <a class="enlace-lateral enlace-lateral--activo" href="admin.html" aria-current="page">
+            <svg class="icono-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+            Panel general
+          </a>
+          <a class="enlace-lateral" href="../empresas/empresas.html">
+            <svg class="icono-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 21v-6h6v6"/><path d="M9 10h.01M15 10h.01"/></svg>
+            Empresas
+            <span class="contador">12</span>
+          </a>
+
+          <p class="navegacion-lateral__titulo">Gestión</p>
+          <a class="enlace-lateral" href="../empresas/solicitud.html">
+            <svg class="icono-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+            Nueva solicitud
+          </a>
+          <a class="enlace-lateral" href="cumplimiento.html">
+            <svg class="icono-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+            Cumplimiento
+          </a>
+          <a class="enlace-lateral" href="alertas.html">
+            <svg class="icono-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            Alertas
+            <span class="contador">3</span>
+          </a>
+        </nav>
+
+        <div class="tarjeta-usuario">
+          <span class="avatar">MA</span>
+          <div>
+            <strong>Marta Arroyo</strong>
+            <small>Analista senior</small>
+          </div>
+          <a class="enlace-lateral" href="../../../index.html" title="Cerrar sesión" style="margin-left:auto; padding:0.5rem;">
+            <svg class="icono-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+          </a>
+        </div>
+      </aside>
+
+      <div class="fondo-menu" id="fondo-menu"></div>
+
+      <div class="app-contenido">
+        <header class="cabecera-app">
+          <button class="boton-menu" id="boton-menu" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="barra-lateral">
+            <svg class="icono-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+          </button>
+          <div class="cabecera-app__titulo">
+            <h2>Panel general</h2>
+            <p>Resumen del régimen · Viernes 21 de agosto, 2026</p>
+          </div>
+          <div class="cabecera-app__acciones">
+            <a class="campana" href="alertas.html" title="Ver alertas">
+              <svg class="icono-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+              <span class="punto-notificacion"></span>
+            </a>
+          </div>
+        </header>
+
+        <main class="contenido-principal" id="contenido-principal">
+          <section class="rejilla-metricas" aria-label="Indicadores clave">
+            <article class="tarjeta-metrica">
+              <small>Solicitudes activas</small>
+              <strong>12</strong>
+              <span class="variacion texto-verde">+2 esta semana</span>
+            </article>
+            <article class="tarjeta-metrica tarjeta-metrica--info">
+              <small>Inversión comprometida</small>
+              <strong>$8.5M</strong>
+              <span class="variacion texto-verde">+12% vs Q1</span>
+            </article>
+            <article class="tarjeta-metrica tarjeta-metrica--marino">
+              <small>Empleos proyectados</small>
+              <strong>467</strong>
+              <span class="variacion texto-verde">+38 nuevos puestos</span>
+            </article>
+            <article class="tarjeta-metrica tarjeta-metrica--alerta">
+              <small>Alertas abiertas</small>
+              <strong>3</strong>
+              <span class="variacion texto-peligro">1 crítica pendiente</span>
+            </article>
+          </section>
+
+          <section class="panel-doble">
+            <article class="tarjeta">
+              <header class="tarjeta__cabecera">
+                <h3>Solicitudes recientes</h3>
+                <a class="boton boton--fantasma boton--sm" href="../empresas/empresas.html">Ver todas</a>
+              </header>
+              <div class="tarjeta__cuerpo tabla-contenedor">
+                <table class="tabla">
+                  <thead>
+                    <tr>
+                      <th scope="col">Empresa</th>
+                      <th scope="col">Sector</th>
+                      <th scope="col">Inversión</th>
+                      <th scope="col">Empleos</th>
+                      <th scope="col">Puntaje IA</th>
+                      <th scope="col">Estado</th>
+                      <th scope="col">Acciones</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="celda-principal">Tech Solutions CR</td>
+                      <td>Tecnología</td>
+                      <td class="celda-numero">$1 500 000</td>
+                      <td class="celda-numero">75</td>
+                      <td>
+                        <div class="fila-tabla-puntaje">
+                          <div class="barra-progreso" role="img" aria-label="Puntaje IA 85 de 100"><div class="barra-progreso__relleno" style="width:85%"></div></div>
+                          <span class="texto-verde"><strong>85</strong></span>
+                        </div>
+                      </td>
+                      <td><span class="insignia insignia--verde">Aprobada</span></td>
+                      <td>
+                        <div class="acciones-fila">
+                          <a class="boton boton--fantasma boton--sm" href="../empresas/detalle-solicitud.html">Detalle</a>
+                          <button class="boton boton--primario boton--sm" type="button" data-abre-modal data-empresa="Tech Solutions CR">Decidir</button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="celda-principal">DataCore Labs</td>
+                      <td>Servicios</td>
+                      <td class="celda-numero">$2 300 000</td>
+                      <td class="celda-numero">120</td>
+                      <td>
+                        <div class="fila-tabla-puntaje">
+                          <div class="barra-progreso" role="img" aria-label="Puntaje IA 92 de 100"><div class="barra-progreso__relleno" style="width:92%"></div></div>
+                          <span class="texto-verde"><strong>92</strong></span>
+                        </div>
+                      </td>
+                      <td><span class="insignia insignia--azul">En evaluación</span></td>
+                      <td>
+                        <div class="acciones-fila">
+                          <a class="boton boton--fantasma boton--sm" href="../empresas/detalle-solicitud.html">Detalle</a>
+                          <button class="boton boton--primario boton--sm" type="button" data-abre-modal data-empresa="DataCore Labs">Decidir</button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="celda-principal">BioVida CR</td>
+                      <td>Ciencias de la Vida</td>
+                      <td class="celda-numero">$3 100 000</td>
+                      <td class="celda-numero">200</td>
+                      <td>
+                        <div class="fila-tabla-puntaje">
+                          <div class="barra-progreso" role="img" aria-label="Puntaje IA 88 de 100"><div class="barra-progreso__relleno" style="width:88%"></div></div>
+                          <span class="texto-verde"><strong>88</strong></span>
+                        </div>
+                      </td>
+                      <td><span class="insignia insignia--verde">Aprobada</span></td>
+                      <td>
+                        <div class="acciones-fila">
+                          <a class="boton boton--fantasma boton--sm" href="../empresas/detalle-solicitud.html">Detalle</a>
+                          <button class="boton boton--primario boton--sm" type="button" data-abre-modal data-empresa="BioVida CR">Decidir</button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="celda-principal">AgroExport SA</td>
+                      <td>Manufactura</td>
+                      <td class="celda-numero">$980 000</td>
+                      <td class="celda-numero">42</td>
+                      <td>
+                        <div class="fila-tabla-puntaje">
+                          <div class="barra-progreso" role="img" aria-label="Puntaje IA 58 de 100"><div class="barra-progreso__relleno barra-progreso__relleno--media" style="width:58%"></div></div>
+                          <span class="texto-suave"><strong>58</strong></span>
+                        </div>
+                      </td>
+                      <td><span class="insignia insignia--naranja">Revisar</span></td>
+                      <td>
+                        <div class="acciones-fila">
+                          <a class="boton boton--fantasma boton--sm" href="../empresas/detalle-solicitud.html">Detalle</a>
+                          <button class="boton boton--primario boton--sm" type="button" data-abre-modal data-empresa="AgroExport SA">Decidir</button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="celda-principal">Textiles del Este</td>
+                      <td>Manufactura</td>
+                      <td class="celda-numero">$650 000</td>
+                      <td class="celda-numero">30</td>
+                      <td>
+                        <div class="fila-tabla-puntaje">
+                          <div class="barra-progreso" role="img" aria-label="Puntaje IA 34 de 100"><div class="barra-progreso__relleno barra-progreso__relleno--baja" style="width:34%"></div></div>
+                          <span class="texto-peligro"><strong>34</strong></span>
+                        </div>
+                      </td>
+                      <td><span class="insignia insignia--roja">Sugerida rechazo</span></td>
+                      <td>
+                        <div class="acciones-fila">
+                          <a class="boton boton--fantasma boton--sm" href="../empresas/detalle-solicitud.html">Detalle</a>
+                          <button class="boton boton--primario boton--sm" type="button" data-abre-modal data-empresa="Textiles del Este">Decidir</button>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <nav class="paginacion" aria-label="Paginación de solicitudes">
+                  <span class="paginacion__actual">1</span>
+                  <a href="#pagina-2">2</a>
+                  <a href="#pagina-3">3</a>
+                </nav>
+              </div>
+            </article>
+
+            <aside class="tarjeta">
+              <header class="tarjeta__cabecera">
+                <h3>Actividad reciente</h3>
+              </header>
+              <div class="tarjeta__cuerpo lista-actividad">
+                <div class="item-actividad">
+                  <span class="punto-linea"></span>
+                  <div>
+                    <p><strong>Tech Solutions CR</strong> fue aprobada tras revisión del analista.</p>
+                    <time datetime="2026-08-20T09:24">Hoy · 09:24</time>
+                  </div>
+                </div>
+                <div class="item-actividad">
+                  <span class="punto-linea punto-linea--azul"></span>
+                  <div>
+                    <p>Nueva solicitud recibida de <strong>DataCore Labs</strong> por $2.3M.</p>
+                    <time datetime="2026-08-20T08:02">Hoy · 08:02</time>
+                  </div>
+                </div>
+                <div class="item-actividad">
+                  <span class="punto-linea punto-linea--naranja"></span>
+                  <div>
+                    <p>Desviación de empleos detectada en <strong>AgroExport SA</strong>.</p>
+                    <time datetime="2026-08-19T17:45">Ayer · 17:45</time>
+                  </div>
+                </div>
+                <div class="item-actividad">
+                  <span class="punto-linea punto-linea--rojo"></span>
+                  <div>
+                    <p>Alerta crítica: <strong>Textiles del Este</strong> al 73% de su compromiso laboral.</p>
+                    <time datetime="2026-08-19T10:30">Ayer · 10:30</time>
+                  </div>
+                </div>
+              </div>
+            </aside>
+          </section>
+
+          <section class="aviso aviso--info">
+            <svg class="icono-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+            <p><strong>Prototipo Fase 1.</strong> Los datos mostrados son estáticos. El puntaje IA es una simulación visual; la decisión final siempre corresponde al analista humano (RF-12).</p>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <div class="modal" id="modal-decision" hidden role="dialog" aria-modal="true" aria-labelledby="titulo-modal-decision">
+      <div class="modal__panel">
+        <header class="modal__cabecera">
+          <h3 id="titulo-modal-decision">Registrar decisión</h3>
+          <button class="modal__cerrar" type="button" data-cierra-modal aria-label="Cerrar diálogo">&times;</button>
+        </header>
+        <form class="modal__cuerpo" id="formulario-decision">
+          <p class="texto-suave" style="margin-bottom: 1rem;">Expediente: <strong id="modal-empresa">Tech Solutions CR</strong>. La sugerencia de la IA es informativa; registre la resolución final.</p>
+          <div class="opciones-radio">
+            <label class="opcion-radio">
+              <input type="radio" name="decision" value="aprobar" checked />
+              Aprobar instalación
+            </label>
+            <label class="opcion-radio">
+              <input type="radio" name="decision" value="rechazar" />
+              Rechazar solicitud
+            </label>
+            <label class="opcion-radio">
+              <input type="radio" name="decision" value="info" />
+              Solicitar más información
+            </label>
+          </div>
+          <div class="campo mt-2">
+            <label for="comentario-decision">Comentario del analista</label>
+            <textarea id="comentario-decision" name="comentario" placeholder="Justifique la decisión para el historial…"></textarea>
+          </div>
+          <div class="grupo-botones" style="justify-content: flex-end;">
+            <button class="boton boton--fantasma" type="button" data-cierra-modal>Cancelar</button>
+            <button class="boton boton--verde" type="submit">Registrar decisión</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="../../js/admin/admin.js" defer></script>
+  </body>
+</html>
