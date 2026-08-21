@@ -1,54 +1,96 @@
+window.ZFSesion.requerir({ rol: "analista" });
+
 const botonMenu = document.getElementById("boton-menu");
 const barraLateral = document.getElementById("barra-lateral");
 const fondoMenu = document.getElementById("fondo-menu");
 
-function alternarMenu(abierto) {
-  barraLateral.classList.toggle("barra-lateral--abierta", abierto);
-  fondoMenu.classList.toggle("fondo-menu--visible", abierto);
-  botonMenu.setAttribute("aria-expanded", String(abierto));
+if (botonMenu && barraLateral && fondoMenu) {
+  const alternarMenu = (abierto) => {
+    barraLateral.classList.toggle("barra-lateral--abierta", abierto);
+    fondoMenu.classList.toggle("fondo-menu--visible", abierto);
+    botonMenu.setAttribute("aria-expanded", String(abierto));
+  };
+
+  botonMenu.addEventListener("click", () => {
+    alternarMenu(!barraLateral.classList.contains("barra-lateral--abierta"));
+  });
+
+  fondoMenu.addEventListener("click", () => alternarMenu(false));
 }
-
-botonMenu.addEventListener("click", () => {
-  alternarMenu(!barraLateral.classList.contains("barra-lateral--abierta"));
-});
-
-fondoMenu.addEventListener("click", () => alternarMenu(false));
 
 const modal = document.getElementById("modal-decision");
-const empresaModal = document.getElementById("modal-empresa");
 
-document.querySelectorAll("[data-abre-modal]").forEach((boton) => {
-  boton.addEventListener("click", () => {
-    if (empresaModal && boton.dataset.empresa) {
-      empresaModal.textContent = boton.dataset.empresa;
-    }
-    modal.hidden = false;
-    const primeraOpcion = modal.querySelector('input[name="decision"]');
-    if (primeraOpcion) primeraOpcion.focus();
+if (modal) {
+  const empresaModal = document.getElementById("modal-empresa");
+
+  document.querySelectorAll("[data-abre-modal]").forEach((boton) => {
+    boton.addEventListener("click", () => {
+      if (empresaModal && boton.dataset.empresa) {
+        empresaModal.textContent = boton.dataset.empresa;
+      }
+      modal.hidden = false;
+      const primeraOpcion = modal.querySelector('input[name="decision"]');
+      if (primeraOpcion) primeraOpcion.focus();
+    });
   });
-});
 
-function cerrarModal() {
-  modal.hidden = true;
+  const cerrarModal = () => {
+    modal.hidden = true;
+  };
+
+  document.querySelectorAll("[data-cierra-modal]").forEach((boton) => {
+    boton.addEventListener("click", cerrarModal);
+  });
+
+  modal.addEventListener("click", (evento) => {
+    if (evento.target === modal) cerrarModal();
+  });
+
+  document.addEventListener("keydown", (evento) => {
+    if (evento.key === "Escape" && !modal.hidden) cerrarModal();
+  });
+
+  const formularioDecision = document.getElementById("formulario-decision");
+
+  if (formularioDecision) {
+    formularioDecision.addEventListener("submit", (evento) => {
+      evento.preventDefault();
+      cerrarModal();
+    });
+  }
 }
 
-document.querySelectorAll("[data-cierra-modal]").forEach((boton) => {
-  boton.addEventListener("click", cerrarModal);
-});
+const pestanas = document.querySelectorAll(".pestana");
+const cuerpoTabla = document.getElementById("cuerpo-tabla-solicitudes");
+const resumenTabla = document.getElementById("resumen-tabla");
 
-modal.addEventListener("click", (evento) => {
-  if (evento.target === modal) cerrarModal();
-});
+if (pestanas.length && cuerpoTabla) {
+  const totalFilas = cuerpoTabla.querySelectorAll("tr").length;
 
-document.addEventListener("keydown", (evento) => {
-  if (evento.key === "Escape" && !modal.hidden) cerrarModal();
-});
+  pestanas.forEach((pestana) => {
+    pestana.addEventListener("click", () => {
+      pestanas.forEach((otra) => {
+        otra.classList.remove("pestana--activa");
+        otra.setAttribute("aria-selected", "false");
+      });
+      pestana.classList.add("pestana--activa");
+      pestana.setAttribute("aria-selected", "true");
 
-const formularioDecision = document.getElementById("formulario-decision");
+      const filtro = pestana.dataset.filtro;
+      let visibles = 0;
 
-if (formularioDecision) {
-  formularioDecision.addEventListener("submit", (evento) => {
-    evento.preventDefault();
-    cerrarModal();
+      cuerpoTabla.querySelectorAll("tr[data-estado]").forEach((fila) => {
+        const mostrar = filtro === "todas" || fila.dataset.estado === filtro;
+        fila.style.display = mostrar ? "" : "none";
+        if (mostrar) visibles += 1;
+      });
+
+      if (resumenTabla) {
+        resumenTabla.textContent =
+          filtro === "todas"
+            ? `Mostrando ${totalFilas} de 12 solicitudes registradas`
+            : `${visibles} solicitud(es) en estado «${pestana.textContent.trim()}»`;
+      }
+    });
   });
 }

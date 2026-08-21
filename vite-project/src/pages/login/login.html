@@ -25,6 +25,14 @@
           <p>Ingrese con su cuenta para gestionar solicitudes y cumplimiento.</p>
         </header>
 
+        <aside class="sesion-activa" id="sesion-activa" hidden aria-live="polite">
+          <p><strong>Sesión activa:</strong> <span id="sesion-activa-nombre"></span> · <span id="sesion-activa-rol"></span></p>
+          <div class="grupo-botones" style="margin-top:0.6rem;">
+            <a class="boton boton--primario boton--sm" id="boton-ir-panel" href="#">Ir a mi panel</a>
+            <button class="boton boton--fantasma boton--sm" type="button" id="boton-cerrar-activa">Cerrar sesión</button>
+          </div>
+        </aside>
+
         <form class="formulario-auth" id="formulario-acceso" novalidate>
           <fieldset class="roles-acceso">
             <legend class="saltar-a">Tipo de perfil</legend>
@@ -61,6 +69,11 @@
             <a href="#recuperar">¿Olvidó su contraseña?</a>
           </div>
 
+          <p class="aviso aviso--peligro" id="error-acceso" hidden>
+            <svg class="icono-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            <span><strong>Credenciales incorrectas.</strong> Verifique su correo y contraseña, o utilice una cuenta de demostración.</span>
+          </p>
+
           <button type="submit" class="boton boton--primario boton--bloque" id="boton-acceso">Iniciar sesión</button>
 
           <p class="estado-carga" id="estado-carga" role="status">
@@ -69,10 +82,29 @@
           </p>
         </form>
 
+        <aside class="cuentas-demo" aria-label="Cuentas de demostración">
+          <h3>Cuentas de demostración <span>Fase 1 · sin backend</span></h3>
+          <div class="cuenta-demo">
+            <div>
+              <strong>Analista ZF</strong>
+              <small>analista@zofranca.cr · clave: zf2026</small>
+            </div>
+            <button class="boton boton--fantasma boton--sm" type="button" data-rellena-cuenta data-rol="analista" data-correo="analista@zofranca.cr" data-password="zf2026">Usar</button>
+          </div>
+          <div class="cuenta-demo">
+            <div>
+              <strong>Empresa</strong>
+              <small>empresa@techsolutions.cr · clave: zf2026</small>
+            </div>
+            <button class="boton boton--fantasma boton--sm" type="button" data-rellena-cuenta data-rol="empresa" data-correo="empresa@techsolutions.cr" data-password="zf2026">Usar</button>
+          </div>
+        </aside>
+
         <p class="pie-auth">¿Aún no tiene cuenta? <a href="../empresas/solicitud.html">Cree una solicitud de instalación</a></p>
       </section>
     </main>
 
+    <script src="../../js/sesion.js"></script>
     <script src="../../js/login/login.js" defer></script>
   </body>
 </html>

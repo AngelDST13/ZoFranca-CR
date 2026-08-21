@@ -150,6 +150,24 @@ export const historialDecisiones = [
   }
 ];
 
+export const usuarios = [
+  {
+    id: 1,
+    rol: "analista",
+    nombre: "Marta Arroyo",
+    correo: "analista@zofranca.cr",
+    password: "zf2026"
+  },
+  {
+    id: 2,
+    rol: "empresa",
+    nombre: "Tech Solutions CR",
+    correo: "empresa@techsolutions.cr",
+    password: "zf2026",
+    solicitud_id: 1
+  }
+];
+
 const esperar = (ms) => new Promise((resuelto) => setTimeout(resuelto, ms));
 
 export async function obtenerSolicitudes() {

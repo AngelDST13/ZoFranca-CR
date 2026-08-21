@@ -1,3 +1,5 @@
+window.ZFSesion.requerir();
+
 const botonMenu = document.getElementById("boton-menu");
 const barraLateral = document.getElementById("barra-lateral");
 const fondoMenu = document.getElementById("fondo-menu");

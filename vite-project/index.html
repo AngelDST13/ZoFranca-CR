@@ -12,6 +12,14 @@
     <link rel="stylesheet" href="src/css/landing.css" />
   </head>
   <body>
+    <script>
+      (function () {
+        var ruta = window.location.pathname;
+        if (ruta !== "/" && !ruta.endsWith("/index.html")) {
+          window.location.replace("/");
+        }
+      })();
+    </script>
     <a class="saltar-a" href="#contenido">Saltar al contenido</a>
 
     <header class="cabecera-landing">
@@ -161,10 +169,10 @@
         <div class="contenedor">
           <div class="llamado-accion">
             <h2>Agilice la llegada de inversión a su zona franca</h2>
-            <p>Acceda al panel del analista o cree una nueva solicitud de instalación en minutos.</p>
+            <p>Cree una nueva solicitud de instalación o acceda con su cuenta para gestionarla desde el panel del analista.</p>
             <div class="grupo-botones" style="justify-content: center;">
-              <a class="boton boton--blanco" href="src/pages/login/login.html">Iniciar sesión</a>
-              <a class="boton boton--contorno" href="src/pages/admin/admin.html">Ver panel del analista</a>
+              <a class="boton boton--blanco" href="src/pages/empresas/solicitud.html">Crear solicitud de instalación</a>
+              <a class="boton boton--contorno" href="src/pages/login/login.html">Iniciar sesión</a>
             </div>
           </div>
         </div>
