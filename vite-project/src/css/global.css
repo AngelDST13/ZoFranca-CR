@@ -1,3 +1,6 @@
+/* src/css/global.css */
+@import './variables.css';
+
 *,
 *::before,
 *::after {
