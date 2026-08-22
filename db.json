@@ -1,0 +1,15 @@
+{
+  "zonasFrancas": [
+    {
+      "id": "zf-01",
+      "nombre": "Zona Franca San José",
+      "inversionMinima": 150000,
+      "empleosMinimos": 10,
+      "sectoresPermitidos": ["Tecnología", "Servicios", "Manufactura Medida"]
+    }
+  ],
+  "solicitudes": [],
+  "reportes": [],
+  "alertas": [],
+  "historial": []
+}
