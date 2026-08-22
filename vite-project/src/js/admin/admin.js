@@ -1,96 +1,213 @@
-window.ZFSesion.requerir({ rol: "analista" });
+// src/js/admin/admin.js
+import '../../css/global.css';
+import '../../css/components.css';
+import '../../css/dashboard.css';
 
-const botonMenu = document.getElementById("boton-menu");
-const barraLateral = document.getElementById("barra-lateral");
-const fondoMenu = document.getElementById("fondo-menu");
+const API_BASE_URL = 'http://localhost:3001';
 
-if (botonMenu && barraLateral && fondoMenu) {
-  const alternarMenu = (abierto) => {
-    barraLateral.classList.toggle("barra-lateral--abierta", abierto);
-    fondoMenu.classList.toggle("fondo-menu--visible", abierto);
-    botonMenu.setAttribute("aria-expanded", String(abierto));
-  };
-
-  botonMenu.addEventListener("click", () => {
-    alternarMenu(!barraLateral.classList.contains("barra-lateral--abierta"));
-  });
-
-  fondoMenu.addEventListener("click", () => alternarMenu(false));
+// Control de Sesión
+if (window.ZFSesion && typeof window.ZFSesion.requerir === 'function') {
+  window.ZFSesion.requerir();
 }
 
-const modal = document.getElementById("modal-decision");
+// Variables Globales
+let solicitudesGlobales = [];
+let zonasFrancasGlobales = [];
+let solicitudSeleccionada = null;
 
-if (modal) {
-  const empresaModal = document.getElementById("modal-empresa");
+// Referencias al DOM
+const tablaSolicitudes = document.getElementById("tabla-solicitudes");
+const modalDecision = document.getElementById("modal-decision");
+const formularioDecision = document.getElementById("formulario-decision");
+const empresaModalLabel = document.getElementById("modal-empresa");
+const cargandoModal = document.getElementById("indicador-carga");
 
-  document.querySelectorAll("[data-abre-modal]").forEach((boton) => {
-    boton.addEventListener("click", () => {
-      if (empresaModal && boton.dataset.empresa) {
-        empresaModal.textContent = boton.dataset.empresa;
-      }
-      modal.hidden = false;
-      const primeraOpcion = modal.querySelector('input[name="decision"]');
-      if (primeraOpcion) primeraOpcion.focus();
-    });
-  });
+// 1. Motor de Evaluación de IA (Servicio Asistido) (RF-10)
+function evaluarSolicitudConIA(solicitud, zonaFranca) {
+  const minInversion = zonaFranca ? zonaFranca.inversionMinima : 100000;
+  const minEmpleos = zonaFranca ? zonaFranca.empleosMinimos : 5;
 
-  const cerrarModal = () => {
-    modal.hidden = true;
-  };
+  let puntaje = 0;
 
-  document.querySelectorAll("[data-cierra-modal]").forEach((boton) => {
-    boton.addEventListener("click", cerrarModal);
-  });
+  // Evaluación de Inversión (hasta 50 pts)
+  if (solicitud.inversionProyectada >= minInversion) {
+    puntaje += 50;
+  } else {
+    puntaje += Math.round((solicitud.inversionProyectada / minInversion) * 50);
+  }
 
-  modal.addEventListener("click", (evento) => {
-    if (evento.target === modal) cerrarModal();
-  });
+  // Evaluación de Empleos (hasta 50 pts)
+  if (solicitud.empleosProyectados >= minEmpleos) {
+    puntaje += 50;
+  } else {
+    puntaje += Math.round((solicitud.empleosProyectados / minEmpleos) * 50);
+  }
 
-  document.addEventListener("keydown", (evento) => {
-    if (evento.key === "Escape" && !modal.hidden) cerrarModal();
-  });
+  // Clasificación sugerida por IA
+  let sugerencia = "Rechazada";
+  if (puntaje >= 80) {
+    sugerencia = "Recomendada";
+  } else if (puntaje >= 50) {
+    sugerencia = "Revisar";
+  }
 
-  const formularioDecision = document.getElementById("formulario-decision");
+  return { puntaje, sugerencia };
+}
 
-  if (formularioDecision) {
-    formularioDecision.addEventListener("submit", (evento) => {
-      evento.preventDefault();
-      cerrarModal();
-    });
+// 2. Cargar Solicitudes y Zonas Francas en Paralelo con Promise.all (RF-18, RNF-03)
+async function cargarDatosDashboard() {
+  if (cargandoModal) cargandoModal.hidden = false;
+
+  try {
+    // Peticiones paralelas asíncronas
+    const [resSolicitudes, resZonas] = await Promise.all([
+      fetch(`${API_BASE_URL}/solicitudes`),
+      fetch(`${API_BASE_URL}/zonasFrancas`)
+    ]);
+
+    if (!resSolicitudes.ok || !resZonas.ok) {
+      throw new Error("Fallo al obtener los datos del servidor.");
+    }
+
+    solicitudesGlobales = await resSolicitudes.json();
+    zonasFrancasGlobales = await resZonas.json();
+
+    renderizarTabla(solicitudesGlobales);
+
+  } catch (error) {
+    // Feedback amigable de errores (RF-16, RNF-05)
+    console.error("Error al cargar datos:", error);
+    alert("No se pudieron cargar las solicitudes. Por favor asegúrate de que json-server esté iniciado.");
+  } finally {
+    if (cargandoModal) cargandoModal.hidden = true;
   }
 }
 
-const pestanas = document.querySelectorAll(".pestana");
-const cuerpoTabla = document.getElementById("cuerpo-tabla-solicitudes");
-const resumenTabla = document.getElementById("resumen-tabla");
+// 3. Renderizar la Tabla de Solicitudes en el DOM
+function renderizarTabla(solicitudes) {
+  if (!tablaSolicitudes) return;
 
-if (pestanas.length && cuerpoTabla) {
-  const totalFilas = cuerpoTabla.querySelectorAll("tr").length;
+  const tbody = tablaSolicitudes.querySelector("tbody") || tablaSolicitudes;
+  tbody.innerHTML = "";
 
-  pestanas.forEach((pestana) => {
-    pestana.addEventListener("click", () => {
-      pestanas.forEach((otra) => {
-        otra.classList.remove("pestana--activa");
-        otra.setAttribute("aria-selected", "false");
-      });
-      pestana.classList.add("pestana--activa");
-      pestana.setAttribute("aria-selected", "true");
+  if (solicitudes.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="6" style="text-align:center;">No hay solicitudes registradas.</td></tr>`;
+    return;
+  }
 
-      const filtro = pestana.dataset.filtro;
-      let visibles = 0;
+  solicitudes.forEach((solicitud) => {
+    // Evaluar con la primera zona franca o criterios por defecto
+    const zf = zonasFrancasGlobales[0];
+    const evaluacion = evaluarSolicitudConIA(solicitud, zf);
 
-      cuerpoTabla.querySelectorAll("tr[data-estado]").forEach((fila) => {
-        const mostrar = filtro === "todas" || fila.dataset.estado === filtro;
-        fila.style.display = mostrar ? "" : "none";
-        if (mostrar) visibles += 1;
-      });
+    const fila = document.createElement("tr");
+    fila.innerHTML = `
+      <td>${solicitud.nombreEmpresa || 'N/A'}</td>
+      <td>${solicitud.sector || 'N/A'}</td>
+      <td>$${Number(solicitud.inversionProyectada || 0).toLocaleString()}</td>
+      <td>${solicitud.empleosProyectados || 0}</td>
+      <td>
+        <span class="badge badge--${obtenerClaseEstado(solicitud.estado)}">
+          ${solicitud.estado || 'Pendiente'}
+        </span>
+        <br>
+        <small>IA: ${evaluacion.sugerencia} (${evaluacion.puntaje} pts)</small>
+      </td>
+      <td>
+        <button class="boton boton--secundario boton--sm" data-id="${solicitud.id}">
+          Evaluar / Decidir
+        </button>
+      </td>
+    `;
 
-      if (resumenTabla) {
-        resumenTabla.textContent =
-          filtro === "todas"
-            ? `Mostrando ${totalFilas} de 12 solicitudes registradas`
-            : `${visibles} solicitud(es) en estado «${pestana.textContent.trim()}»`;
-      }
-    });
+    // Asignar evento para abrir modal de decisión
+    const botonEvaluar = fila.querySelector("button");
+    botonEvaluar.addEventListener("click", () => abrirModalDecision(solicitud, evaluacion));
+
+    tbody.appendChild(fila);
   });
 }
+
+function obtenerClaseEstado(estado) {
+  switch (estado) {
+    case 'Aprobada': case 'Recomendada': return 'exito';
+    case 'Revisar': case 'Pendiente': return 'advertencia';
+    case 'Rechazada': return 'error';
+    default: return 'neutro';
+  }
+}
+
+// 4. Modal y Toma de Decisión Humana (RF-17, HU-05)
+function abrirModalDecision(solicitud, evaluacion) {
+  solicitudSeleccionada = solicitud;
+
+  if (empresaModalLabel) {
+    empresaModalLabel.textContent = `${solicitud.nombreEmpresa} (Sugerencia IA: ${evaluacion.sugerencia} - ${evaluacion.puntaje} pts)`;
+  }
+
+  if (modalDecision) modalDecision.hidden = false;
+}
+
+const cerrarModal = () => {
+  if (modalDecision) modalDecision.hidden = true;
+  solicitudSeleccionada = null;
+};
+
+// Listeners para cerrar modal
+document.querySelectorAll("[data-cierra-modal]").forEach((b) => b.addEventListener("click", cerrarModal));
+
+// 5. Procesar Decisión Final del Analista (RF-17, RF-19, RF-21)
+if (formularioDecision) {
+  formularioDecision.addEventListener("submit", async (evento) => {
+    evento.preventDefault();
+
+    if (!solicitudSeleccionada) return;
+
+    const datosFormulario = new FormData(formularioDecision);
+    const nuevaDecision = datosFormulario.get("decision"); // Ej: Aprobada, Rechazada, En Revisión
+    const justificacion = datosFormulario.get("justificacion") || "Sin justificación adicional.";
+
+    if (cargandoModal) cargandoModal.hidden = false;
+
+    try {
+      // Actualizar el estado de la solicitud en db.json (RF-21)
+      const resSolicitud = await fetch(`${API_BASE_URL}/solicitudes/${solicitudSeleccionada.id}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          estado: nuevaDecision,
+          justificacionAnalista: justificacion,
+          fechaDecision: new Date().toISOString()
+        })
+      });
+
+      if (!resSolicitud.ok) throw new Error("Error al actualizar la solicitud.");
+
+      // Registrar trazabilidad en el historial (RF-19)
+      await fetch(`${API_BASE_URL}/historial`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          solicitudId: solicitudSeleccionada.id,
+          empresa: solicitudSeleccionada.nombreEmpresa,
+          accion: `Decisión Final: ${nuevaDecision}`,
+          usuario: "Analista Humano",
+          justificacion: justificacion,
+          fecha: new Date().toISOString()
+        })
+      });
+
+      cerrarModal();
+      await cargarDatosDashboard(); // Recargar la tabla con datos actualizados
+
+    } catch (error) {
+      console.error("Error al guardar decisión:", error);
+      alert("No se pudo guardar la decisión final. Intente nuevamente.");
+    } finally {
+      if (cargandoModal) cargandoModal.hidden = true;
+    }
+  });
+}
+
+// Inicialización
+document.addEventListener("DOMContentLoaded", cargarDatosDashboard);
