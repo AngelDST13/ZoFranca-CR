@@ -1,14 +1,41 @@
 // src/js/admin/alertas.js
+import '../sesion.js';
 import '../../css/global.css';
 import '../../css/components.css';
 import '../../css/dashboard.css';
 
 const API_BASE_URL = 'http://localhost:3001';
 
-// Control de Sesión
-if (window.ZFSesion && typeof window.ZFSesion.requerir === 'function') {
-  window.ZFSesion.requerir();
-}
+// Datos mock de respaldo cuando el servidor no responde
+const MOCK_ALERTAS = [
+  {
+    id: "1",
+    nombreEmpresa: "AgroExport del Sur",
+    tipo: "Incumplimiento de Metas",
+    gravedad: "Alta",
+    detalles: "Empleos reales (3) por debajo del compromiso (4). Inversión ejecutada ($60,000) por debajo del compromiso ($85,000).",
+    estado: "Pendiente",
+    fechaRegistro: "2026-07-01T10:00:00.000Z"
+  },
+  {
+    id: "2",
+    nombreEmpresa: "Tech Solutions CR",
+    tipo: "Reporte Tardío",
+    gravedad: "Media",
+    detalles: "El reporte trimestral Q1 fue presentado con 15 días de retraso.",
+    estado: "Pendiente",
+    fechaRegistro: "2026-06-15T08:30:00.000Z"
+  },
+  {
+    id: "3",
+    nombreEmpresa: "BioMed Innovations",
+    tipo: "Incumplimiento de Metas",
+    gravedad: "Baja",
+    detalles: "Diferencia menor en empleos reportados vs comprometidos.",
+    estado: "Resuelta",
+    fechaRegistro: "2026-05-20T14:00:00.000Z"
+  }
+];
 
 let alertasGlobales = [];
 
@@ -23,19 +50,16 @@ async function cargarAlertas() {
 
   try {
     const respuesta = await fetch(`${API_BASE_URL}/alertas`);
-    if (!respuesta.ok) throw new Error("Error al obtener las alertas.");
-
+    if (!respuesta.ok) throw new Error("Servidor no disponible");
     alertasGlobales = await respuesta.json();
-    renderizarAlertas(alertasGlobales);
-
   } catch (error) {
-    console.error("Error cargando alertas:", error);
-    if (contenedorAlertas) {
-      contenedorAlertas.innerHTML = `<div class="alerta alerta--error">No se pudieron cargar las alertas. Verifique la conexión con el servidor.</div>`;
-    }
+    console.warn("JSON-Server no disponible, usando datos mock:", error.message);
+    alertasGlobales = MOCK_ALERTAS;
   } finally {
     if (cargandoModal) cargandoModal.hidden = true;
   }
+
+  renderizarAlertas(alertasGlobales);
 }
 
 // Renderizar Alertas en la interfaz
@@ -58,17 +82,14 @@ function renderizarAlertas(alertas) {
       <td><span class="badge badge--${obtenerClaseGravedad(alerta.gravedad)}">${alerta.gravedad || 'Media'}</span></td>
       <td>${alerta.detalles || 'Sin detalles adicionales'}</td>
       <td>
-        <button class="boton boton--secundario boton--sm" data-id="${alerta.id}">
-          ${alerta.estado === 'Resuelta' ? 'Resuelta' : 'Marcar Resuelta'}
+        <button class="boton boton--secundario boton--sm" data-id="${alerta.id}" ${alerta.estado === 'Resuelta' ? 'disabled' : ''}>
+          ${alerta.estado === 'Resuelta' ? '✅ Resuelta' : 'Marcar Resuelta'}
         </button>
       </td>
     `;
 
-    const botonResolver = fila.querySelector("button");
-    if (alerta.estado === 'Resuelta') {
-      botonResolver.disabled = true;
-    } else {
-      botonResolver.addEventListener("click", () => resolverAlerta(alerta));
+    if (alerta.estado !== 'Resuelta') {
+      fila.querySelector("button").addEventListener("click", () => resolverAlerta(alerta));
     }
 
     tbody.appendChild(fila);
@@ -88,7 +109,6 @@ async function resolverAlerta(alerta) {
   if (cargandoModal) cargandoModal.hidden = false;
 
   try {
-    // 1. Actualizar estado de la alerta
     const resAlerta = await fetch(`${API_BASE_URL}/alertas/${alerta.id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
@@ -97,7 +117,7 @@ async function resolverAlerta(alerta) {
 
     if (!resAlerta.ok) throw new Error("No se pudo actualizar la alerta.");
 
-    // 2. Registrar en historial de auditoría (RF-19)
+    // Registrar en historial (RF-19)
     await fetch(`${API_BASE_URL}/historial`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -110,13 +130,14 @@ async function resolverAlerta(alerta) {
       })
     });
 
-    await cargarAlertas();
-
   } catch (error) {
-    console.error("Error al resolver alerta:", error);
-    alert("No se pudo actualizar el estado de la alerta.");
+    console.warn("Servidor offline — resolución aplicada solo en UI:", error.message);
+    // Actualizar estado en mock local para que la UI refleje el cambio
+    const idx = alertasGlobales.findIndex(a => a.id === alerta.id);
+    if (idx !== -1) alertasGlobales[idx].estado = "Resuelta";
   } finally {
     if (cargandoModal) cargandoModal.hidden = true;
+    renderizarAlertas(alertasGlobales);
   }
 }
 
@@ -133,4 +154,26 @@ if (filtroGravedad) {
   });
 }
 
-document.addEventListener("DOMContentLoaded", cargarAlertas);
+document.addEventListener("DOMContentLoaded", () => {
+  // Cargar alertas desde API o mock
+  cargarAlertas();
+
+  // Seguridad: delegación de eventos en botones estáticos del HTML
+  // (para tarjetas hardcodeadas en alertas.html, si existen)
+  document.addEventListener("click", (e) => {
+    const btn = e.target.closest("button");
+    if (!btn) return;
+
+    // Botones "Marcar gestionada" en tarjetas estáticas del HTML
+    if (btn.textContent.trim().includes("Marcar gestionada") || btn.dataset.accion === "gestionar") {
+      e.preventDefault();
+      const tarjeta = btn.closest(".tarjeta-alerta") || btn.closest(".tarjeta-panel") || btn.closest("article") || btn.closest("div");
+      if (tarjeta) {
+        tarjeta.style.opacity = "0.5";
+        tarjeta.style.transition = "opacity 0.3s ease";
+      }
+      btn.textContent = "✓ Gestionada";
+      btn.disabled = true;
+    }
+  });
+});

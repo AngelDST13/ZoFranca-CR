@@ -1,9 +1,18 @@
 // src/js/empresas/empresas.js
+import '../sesion.js';
 import '../../css/global.css';
 import '../../css/components.css';
 import '../../css/dashboard.css';
 
 const API_BASE_URL = 'http://localhost:3001';
+
+const usuarioActivo = JSON.parse(localStorage.getItem("zf_usuario"));
+if (usuarioActivo) {
+  const elNombre = document.querySelector(".info-usuario strong");
+  const elRol = document.querySelector(".info-usuario small");
+  if (elNombre) elNombre.textContent = usuarioActivo.nombre;
+  if (elRol) elRol.textContent = usuarioActivo.rol === "analista" ? "Analista Senior" : "Empresa Solicitante";
+}
 
 // Control de Sesión
 if (window.ZFSesion && typeof window.ZFSesion.requerir === 'function') {

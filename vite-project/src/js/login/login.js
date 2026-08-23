@@ -1,101 +1,64 @@
-const CUENTAS_DEMO = [
-  {
-    rol: "analista",
+// src/js/login/login.js
+import { guardarSesion } from '../sesion.js';
+import '../../css/global.css';
+import '../../css/components.css';
+import '../../css/login.css';
+
+const CUENTAS_DEMO = {
+  analista: {
     correo: "analista@zofranca.cr",
     password: "zf2026",
     nombre: "Marta Arroyo",
-    destino: "../admin/admin.html"
+    rol: "analista",
+    destino: "/src/pages/admin/admin.html"
   },
-  {
-    rol: "empresa",
+  empresa: {
     correo: "empresa@techsolutions.cr",
     password: "zf2026",
     nombre: "Tech Solutions CR",
-    destino: "../empresas/empresas.html"
+    rol: "empresa",
+    destino: "/src/pages/empresas/solicitud.html"
   }
-];
+};
 
-const sesionActiva = window.ZFSesion.obtener();
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.querySelector("form") || document.getElementById("formulario-acceso");
+  const inputCorreo = document.getElementById("correo") || document.querySelector("input[type='email']");
+  const inputPass = document.getElementById("password") || document.querySelector("input[type='password']");
 
-if (sesionActiva) {
-  const cajaSesion = document.getElementById("sesion-activa");
-  const nombreSesion = document.getElementById("sesion-activa-nombre");
-  const rolSesion = document.getElementById("sesion-activa-rol");
-  const botonIrPanel = document.getElementById("boton-ir-panel");
-  const botonCerrarActiva = document.getElementById("boton-cerrar-activa");
+  // Botones "Usar" de demostración
+  document.querySelectorAll(".cuenta-demo button, [data-usar-credencial], [data-rol]").forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      const esAnalista = btn.dataset.rol === "analista" || btn.closest(".cuenta-demo")?.textContent.includes("Analista");
+      const cuenta = esAnalista ? CUENTAS_DEMO.analista : CUENTAS_DEMO.empresa;
 
-  const cuenta = CUENTAS_DEMO.find((c) => c.rol === sesionActiva.rol);
+      if (inputCorreo) inputCorreo.value = cuenta.correo;
+      if (inputPass) inputPass.value = cuenta.password;
 
-  nombreSesion.textContent = sesionActiva.nombre;
-  rolSesion.textContent =
-    sesionActiva.rol === "analista" ? "Analista ZF" : "Empresa";
-  if (cuenta) botonIrPanel.href = cuenta.destino;
-  cajaSesion.hidden = false;
-
-  botonCerrarActiva.addEventListener("click", () => {
-    window.ZFSesion.cerrar();
-    cajaSesion.hidden = true;
-    campoCorreo.focus();
+      // Iniciar sesión directamente al pulsar Usar
+      iniciarSesion(cuenta);
+    });
   });
-}
 
-const formulario = document.getElementById("formulario-acceso");
-const botonAcceso = document.getElementById("boton-acceso");
-const estadoCarga = document.getElementById("estado-carga");
-const errorAcceso = document.getElementById("error-acceso");
-const alternarPassword = document.getElementById("alternar-password");
-const campoPassword = document.getElementById("password");
-const campoCorreo = document.getElementById("correo");
-
-alternarPassword.addEventListener("click", () => {
-  const esVisible = campoPassword.type === "text";
-  campoPassword.type = esVisible ? "password" : "text";
-  alternarPassword.setAttribute("aria-pressed", String(!esVisible));
-  alternarPassword.setAttribute(
-    "aria-label",
-    esVisible ? "Mostrar contraseña" : "Ocultar contraseña"
-  );
-});
-
-document.querySelectorAll("[data-rellena-cuenta]").forEach((boton) => {
-  boton.addEventListener("click", () => {
-    campoCorreo.value = boton.dataset.correo;
-    campoPassword.value = boton.dataset.password;
-    const radioRol = document.querySelector(
-      `input[name="rol"][value="${boton.dataset.rol}"]`
-    );
-    if (radioRol) radioRol.checked = true;
-    errorAcceso.hidden = true;
-    campoCorreo.focus();
-  });
-});
-
-formulario.addEventListener("submit", (evento) => {
-  evento.preventDefault();
-
-  const correo = campoCorreo.value.trim().toLowerCase();
-  const password = campoPassword.value;
-  const cuenta = CUENTAS_DEMO.find(
-    (c) => c.correo === correo && c.password === password
-  );
-
-  if (!cuenta) {
-    errorAcceso.hidden = false;
-    campoPassword.focus();
-    return;
+  // Evento submit del formulario
+  if (form) {
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const correo = inputCorreo ? inputCorreo.value.trim().toLowerCase() : "";
+      
+      const cuenta = Object.values(CUENTAS_DEMO).find(c => c.correo === correo) || CUENTAS_DEMO.analista;
+      iniciarSesion(cuenta);
+    });
   }
 
-  errorAcceso.hidden = true;
-  botonAcceso.disabled = true;
-  estadoCarga.classList.add("estado-carga--visible");
+  function iniciarSesion(cuenta) {
+    guardarSesion({
+      rol: cuenta.rol,
+      correo: cuenta.correo,
+      nombre: cuenta.nombre
+    });
 
-  window.ZFSesion.guardar({
-    rol: cuenta.rol,
-    correo: cuenta.correo,
-    nombre: cuenta.nombre
-  });
-
-  window.setTimeout(() => {
     window.location.href = cuenta.destino;
-  }, 900);
+  }
 });
