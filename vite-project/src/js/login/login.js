@@ -21,12 +21,23 @@ const CUENTAS_DEMO = {
   }
 };
 
+function obtenerRolSeleccionado() {
+  const radioSeleccionado = document.querySelector('input[name="rol"]:checked');
+  return radioSeleccionado ? radioSeleccionado.value : "analista";
+}
+
+function validarCredenciales(correo, password, rol) {
+  return Object.values(CUENTAS_DEMO).find((cuenta) => {
+    return cuenta.rol === rol && cuenta.correo.toLowerCase() === correo.toLowerCase() && cuenta.password === password;
+  }) || null;
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.querySelector("form") || document.getElementById("formulario-acceso");
   const inputCorreo = document.getElementById("correo") || document.querySelector("input[type='email']");
   const inputPass = document.getElementById("password") || document.querySelector("input[type='password']");
+  const errorAcceso = document.getElementById("error-acceso");
 
-  // Botones "Usar" de demostración
   document.querySelectorAll(".cuenta-demo button, [data-usar-credencial], [data-rol]").forEach((btn) => {
     btn.addEventListener("click", (e) => {
       e.preventDefault();
@@ -36,18 +47,30 @@ document.addEventListener("DOMContentLoaded", () => {
       if (inputCorreo) inputCorreo.value = cuenta.correo;
       if (inputPass) inputPass.value = cuenta.password;
 
-      // Iniciar sesión directamente al pulsar Usar
       iniciarSesion(cuenta);
     });
   });
 
-  // Evento submit del formulario
   if (form) {
     form.addEventListener("submit", (e) => {
       e.preventDefault();
+
       const correo = inputCorreo ? inputCorreo.value.trim().toLowerCase() : "";
-      
-      const cuenta = Object.values(CUENTAS_DEMO).find(c => c.correo === correo) || CUENTAS_DEMO.analista;
+      const password = inputPass ? inputPass.value.trim() : "";
+      const rol = obtenerRolSeleccionado();
+      const cuenta = validarCredenciales(correo, password, rol);
+
+      if (!cuenta) {
+        if (errorAcceso) {
+          errorAcceso.hidden = false;
+        }
+        return;
+      }
+
+      if (errorAcceso) {
+        errorAcceso.hidden = true;
+      }
+
       iniciarSesion(cuenta);
     });
   }
@@ -59,6 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
       nombre: cuenta.nombre
     });
 
-    window.location.href = cuenta.destino;
+    const destino = new URL(cuenta.destino, window.location.origin).pathname;
+    window.location.assign(destino);
   }
 });
