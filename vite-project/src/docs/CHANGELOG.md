@@ -6,15 +6,19 @@ El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1
 
 ## [Unreleased] - 2026-08-22
 
+### Añadido (Added)
+
+- **Vista Administrador (`admin.html`):** Integración y alineación de la paginación dentro del pie de tabla (`.pie-tabla`)[cite: 6].
+
 ### Corregido (Fixed)
-- **Alertas (`alertas.html`):**
-  - Ajustada la jerarquía de carga de scripts ordenando `sesion.js` previo a los módulos de JS[cite: 4].
-  - Integrados estilos en línea y CSS de estructura para corregir la alineación del logo de la marca y las tarjetas de alertas[cite: 4].
 
-- **Cumplimiento (`cumplimiento.html`):**
-  - Corregida la desalineación visual en la tabla lateral de "Últimos reportes"[cite: 5].
-  - Removidos scripts e importaciones duplicadas al final del archivo HTML[cite: 5].
+- **Vista Alertas (`alertas.html`):**
+  - Ajuste en el orden de scripts (`sesion.js` antes del módulo JS)[cite: 4].
+  - Corrección de la estructura de tarjetas y alineación de la marca `ZF ZoFranca CR`[cite: 4].
 
-- **Panel de Administración (`admin_2.html`):**
-  - Identificada y estructurada la sección del pie de página (`.pie-tabla`) que contiene los componentes de paginación de solicitudes[cite: 6].
-  - Documentadas las reglas de estilos CSS para asegurar el resalte y la visibilidad adecuada de la paginación[cite: 6].
+- **Vista Cumplimiento (`cumplimiento.html`):**
+  - Corrección del desbordamiento en la tabla secundaria "Últimos reportes"[cite: 5].
+  - Limpieza de scripts e importaciones duplicadas[cite: 5].
+
+- **Estilos (`dashboard.css`):**
+  - Ajustes de responsividad y scroll interno para tablas en contenedores secundarios[cite: 5, 6].
