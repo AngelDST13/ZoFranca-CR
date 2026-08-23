@@ -10,6 +10,13 @@
     <link rel="stylesheet" href="../../css/global.css" />
     <link rel="stylesheet" href="../../css/components.css" />
     <link rel="stylesheet" href="../../css/dashboard.css" />
+    <style>
+      .marca { display: flex; align-items: center; gap: 0.75rem; padding: 1rem; text-decoration: none; color: #fff; }
+      .marca__logo { background: var(--zofranca-verde, #10b981); color: #fff; font-weight: 800; padding: 0.4rem 0.6rem; border-radius: 6px; }
+      .panel-doble { display: grid; grid-template-columns: 1fr 340px; gap: 1.5rem; align-items: start; }
+      @media (max-width: 1024px) { .panel-doble { grid-template-columns: 1fr; } }
+      .tabla-contenedor { overflow-x: auto; max-width: 100%; }
+    </style>
   </head>
   <body>
     <a class="saltar-a" href="#contenido-principal">Saltar al contenido</a>
@@ -18,7 +25,7 @@
       <aside class="barra-lateral" id="barra-lateral">
         <a class="marca" href="../../../index.html">
           <span class="marca__logo">ZF</span>
-          <span>ZoFranca CR<small>Zonas Francas · Costa Rica</small></span>
+          <span>ZoFranca CR<small style="display:block; color:#94a3b8;">Zonas Francas · Costa Rica</small></span>
         </a>
 
         <nav class="navegacion-lateral" aria-label="Navegación del panel">
@@ -49,7 +56,7 @@
           </a>
         </nav>
 
-        <div class="info-usuario" style="background: #0f172a; padding: 0.75rem; border-radius: 6px; display: flex; align-items: center; gap: 0.75rem;">
+        <div class="info-usuario" style="background: #0f172a; padding: 0.75rem; border-radius: 6px; display: flex; align-items: center; gap: 0.75rem; margin-top: auto;">
           <div id="avatar-usuario-sesion" style="background: #22c55e; color: white; border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.8rem;">MA</div>
           <div>
             <strong id="nombre-usuario-sesion" style="color: white; font-size: 0.85rem; display: block;">Marta Arroyo</strong>
@@ -92,15 +99,15 @@
             <article class="tarjeta-metrica tarjeta-metrica--alerta">
               <small>Empresas en riesgo</small>
               <strong>2</strong>
-              <span class="variacion texto-peligro">Ver alertas</span>
+              <a href="alertas.html" class="variacion texto-peligro" style="text-decoration: underline;">Ver alertas</a>
             </article>
           </section>
 
           <section class="panel-doble">
-            <form class="tarjeta-formulario" id="formulario-reporte" novalidate>
+            <form class="tarjeta-formulario tarjeta" style="padding: 1.5rem;" id="formulario-reporte" novalidate>
               <header style="margin-bottom: 1.5rem;">
-                <h3 style="font-size: 1.1rem;">Registrar reporte de cumplimiento</h3>
-                <p style="font-size: 0.88rem;">Compare los resultados reales contra los compromisos iniciales.</p>
+                <h3 style="font-size: 1.1rem; margin:0 0 0.25rem 0;">Registrar reporte de cumplimiento</h3>
+                <p style="font-size: 0.88rem; color: #64748b; margin:0;">Compare los resultados reales contra los compromisos iniciales.</p>
               </header>
 
               <div class="formulario-grid">
@@ -136,34 +143,33 @@
 
                 <div class="campo campo--completo">
                   <label for="comentario-reporte">Observaciones</label>
-                  <textarea id="comentario-reporte" name="comentario" placeholder="Contexto del período, planes de contratación, ampliaciones…"></textarea>
+                  <textarea id="comentario-reporte" name="comentario" rows="3" placeholder="Contexto del período, planes de contratación, ampliaciones…"></textarea>
                 </div>
               </div>
 
-              <div class="grupo-botones">
+              <div class="grupo-botones" style="margin-top: 1.5rem;">
                 <a class="boton boton--fantasma" href="../admin/admin.html">Cancelar</a>
                 <button class="boton boton--primario" type="submit">Guardar reporte</button>
               </div>
 
-              <div class="aviso aviso--alerta mt-3">
+              <div class="aviso aviso--alerta mt-3" style="margin-top: 1.5rem;">
                 <svg class="icono-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
                 <p><strong>RF-08 · Alertas automáticas.</strong> Si la inversión o los empleos reales quedan por debajo del compromiso, el sistema generará una alerta de desviación en el panel correspondiente.</p>
               </div>
             </form>
 
-            <article class="tarjeta">
-              <header class="tarjeta__cabecera">
-                <h3>Últimos reportes</h3>
+            <article class="tarjeta" style="padding: 1.25rem;">
+              <header class="tarjeta__cabecera" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3 style="margin: 0; font-size: 1rem;">Últimos reportes</h3>
                 <a class="boton boton--fantasma boton--sm" href="alertas.html">Ver alertas</a>
               </header>
-              <div class="tarjeta__cuerpo tabla-contenedor">
-                <table class="tabla" style="min-width: 480px;">
+              <div class="tabla-contenedor">
+                <table class="tabla" style="width: 100%; font-size: 0.85rem;">
                   <thead>
                     <tr>
                       <th scope="col">Empresa</th>
                       <th scope="col">Período</th>
-                      <th scope="col">Inversión real</th>
-                      <th scope="col">Empleos</th>
+                      <th scope="col">Inversión</th>
                       <th scope="col">Estado</th>
                     </tr>
                   </thead>
@@ -171,30 +177,26 @@
                     <tr>
                       <td class="celda-principal">Tech Solutions CR</td>
                       <td>2026-Q2</td>
-                      <td class="celda-numero">$1 600 000</td>
-                      <td class="celda-numero">80</td>
+                      <td class="celda-numero">$1.6M</td>
                       <td><span class="insignia insignia--verde">Cumple</span></td>
                     </tr>
                     <tr>
                       <td class="celda-principal">BioVida CR</td>
                       <td>2026-Q2</td>
-                      <td class="celda-numero">$2 950 000</td>
-                      <td class="celda-numero">195</td>
+                      <td class="celda-numero">$2.9M</td>
                       <td><span class="insignia insignia--verde">Cumple</span></td>
                     </tr>
                     <tr>
                       <td class="celda-principal">AgroExport SA</td>
                       <td>2026-Q2</td>
-                      <td class="celda-numero">$410 000</td>
-                      <td class="celda-numero">36</td>
-                      <td><span class="insignia insignia--naranja">Advertencia</span></td>
+                      <td class="celda-numero">$410k</td>
+                      <td><span class="insignia insignia--naranja">Revisar</span></td>
                     </tr>
                     <tr>
                       <td class="celda-principal">Textiles del Este</td>
                       <td>2026-Q2</td>
-                      <td class="celda-numero">$520 000</td>
-                      <td class="celda-numero">22</td>
-                      <td><span class="insignia insignia--roja">Desviación</span></td>
+                      <td class="celda-numero">$520k</td>
+                      <td><span class="insignia insignia--roja">Alerta</span></td>
                     </tr>
                   </tbody>
                 </table>
@@ -205,8 +207,7 @@
       </div>
     </div>
 
-    <script type="module" src="../../js/admin/cumplimiento.js"></script>
     <script src="../../js/sesion.js"></script>
-    <script src="../../js/admin/admin.js" defer></script>
+    <script type="module" src="../../js/admin/cumplimiento.js"></script>
   </body>
 </html>

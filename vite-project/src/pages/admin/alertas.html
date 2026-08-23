@@ -10,6 +10,17 @@
     <link rel="stylesheet" href="../../css/global.css" />
     <link rel="stylesheet" href="../../css/components.css" />
     <link rel="stylesheet" href="../../css/dashboard.css" />
+    <style>
+      .marca { display: flex; align-items: center; gap: 0.75rem; padding: 1rem; text-decoration: none; color: #fff; }
+      .marca__logo { background: var(--zofranca-verde, #10b981); color: #fff; font-weight: 800; padding: 0.4rem 0.6rem; border-radius: 6px; }
+      .lista-alertas { display: flex; flex-direction: column; gap: 1.25rem; margin-top: 1.5rem; }
+      .tarjeta-alerta { display: flex; gap: 1rem; background: var(--bg-tarjeta, #ffffff); border: 1px solid var(--border-color, #e2e8f0); border-radius: 8px; padding: 1.25rem; position: relative; }
+      .tarjeta-alerta--critica { border-left: 4px solid var(--zf-peligro, #ef4444); }
+      .tarjeta-alerta--resuelta { border-left: 4px solid var(--zofranca-verde, #10b981); opacity: 0.85; }
+      .tarjeta-alerta__cuerpo h3 { margin: 0 0 0.5rem 0; font-size: 1.05rem; }
+      .tarjeta-alerta__pie { display: flex; gap: 0.5rem; margin-top: 1rem; }
+      .meta-alerta { display: block; margin-top: 0.5rem; color: #64748b; font-size: 0.78rem; }
+    </style>
   </head>
   <body>
     <a class="saltar-a" href="#contenido-principal">Saltar al contenido</a>
@@ -18,7 +29,7 @@
       <aside class="barra-lateral" id="barra-lateral">
         <a class="marca" href="../../../index.html">
           <span class="marca__logo">ZF</span>
-          <span>ZoFranca CR<small>Zonas Francas · Costa Rica</small></span>
+          <span>ZoFranca CR<small style="display:block; color:#94a3b8;">Zonas Francas · Costa Rica</small></span>
         </a>
 
         <nav class="navegacion-lateral" aria-label="Navegación del panel">
@@ -49,7 +60,7 @@
           </a>
         </nav>
 
-        <div class="info-usuario" style="background: #0f172a; padding: 0.75rem; border-radius: 6px; display: flex; align-items: center; gap: 0.75rem;">
+        <div class="info-usuario" style="background: #0f172a; padding: 0.75rem; border-radius: 6px; display: flex; align-items: center; gap: 0.75rem; margin-top: auto;">
           <div id="avatar-usuario-sesion" style="background: #22c55e; color: white; border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.8rem;">MA</div>
           <div>
             <strong id="nombre-usuario-sesion" style="color: white; font-size: 0.85rem; display: block;">Marta Arroyo</strong>
@@ -85,7 +96,7 @@
               <span class="tarjeta-alerta__icono">
                 <svg class="icono-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
               </span>
-              <div class="tarjeta-alerta__cuerpo">
+              <div class="tarjeta-alerta__cuerpo" style="flex: 1;">
                 <h3>Desviación crítica en compromiso laboral · Textiles del Este</h3>
                 <p>La empresa reporta <strong>22 empleos</strong> frente a un compromiso de <strong>30 puestos</strong> para 2026-Q2 (−27%). La inversión real también se encuentra al 80% de lo pactado.</p>
                 <div class="comparativa__fila mt-1" style="max-width: 420px;">
@@ -99,14 +110,14 @@
                   <button class="boton boton--fantasma boton--sm" type="button">Marcar gestionada</button>
                 </div>
               </div>
-              <span class="insignia insignia--roja">Crítica</span>
+              <span class="insignia insignia--roja" style="align-self: flex-start;">Crítica</span>
             </article>
 
-            <article class="tarjeta-alerta">
+            <article class="tarjeta-alerta" style="border-left: 4px solid var(--zf-alerta, #f59e0b);">
               <span class="tarjeta-alerta__icono">
                 <svg class="icono-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
               </span>
-              <div class="tarjeta-alerta__cuerpo">
+              <div class="tarjeta-alerta__cuerpo" style="flex: 1;">
                 <h3>Ritmo de inversión por debajo del plan · AgroExport SA</h3>
                 <p>Inversión real acumulada de <strong>$410 000</strong> sobre los <strong>$980 000</strong> comprometidos al cierre del semestre. Se recomienda solicitar plan de recuperación.</p>
                 <div class="comparativa__fila mt-1" style="max-width: 420px;">
@@ -120,14 +131,14 @@
                   <button class="boton boton--fantasma boton--sm" type="button">Marcar gestionada</button>
                 </div>
               </div>
-              <span class="insignia insignia--naranja">Advertencia</span>
+              <span class="insignia insignia--naranja" style="align-self: flex-start;">Advertencia</span>
             </article>
 
             <article class="tarjeta-alerta tarjeta-alerta--resuelta">
               <span class="tarjeta-alerta__icono">
                 <svg class="icono-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
               </span>
-              <div class="tarjeta-alerta__cuerpo">
+              <div class="tarjeta-alerta__cuerpo" style="flex: 1;">
                 <h3>Cumplimiento verificado · Tech Solutions CR</h3>
                 <p>El reporte 2026-Q2 confirma <strong>$1 600 000</strong> invertidos y <strong>80 empleos</strong>, superando ambos compromisos. La alerta preventiva fue cerrada automáticamente.</p>
                 <small class="meta-alerta">ALERTA-2026-001 · Resuelta el 20/08/2026 · Período 2026-Q2</small>
@@ -135,19 +146,18 @@
                   <a class="boton boton--fantasma boton--sm" href="../empresas/detalle-solicitud.html?id=SOL-2026-002">Ver expediente</a>
                 </div>
               </div>
-              <span class="insignia insignia--verde">Resuelta</span>
+              <span class="insignia insignia--verde" style="align-self: flex-start;">Resuelta</span>
             </article>
           </section>
 
-          <section class="aviso aviso--info">
+          <section class="aviso aviso--info" style="margin-top: 2rem;">
             <svg class="icono-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
             <p><strong>Datos estáticos.</strong> En producción, estas alertas se generan automáticamente cuando los reportes reales quedan por debajo de los compromisos registrados (RF-06 / RF-08).</p>
           </section>
         </main>
       </div>
     </div>
-    <script type="module" src="../../js/admin/alertas.js"></script>
     <script src="../../js/sesion.js"></script>
-    <script src="../../js/admin/admin.js" defer></script>
+    <script type="module" src="../../js/admin/alertas.js"></script>
   </body>
 </html>

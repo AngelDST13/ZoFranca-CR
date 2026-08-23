@@ -651,3 +651,150 @@ aside .logo small {
 @media (max-width: 560px) {
   .rejilla-metricas { grid-template-columns: 1fr; }
 }
+/* FORZADO DE REJILLA Y DESTIRE DE PANTALLA */
+html, body {
+  margin: 0 !important;
+  padding: 0 !important;
+  height: 100% !important;
+  width: 100% !important;
+  overflow: hidden !important;
+}
+
+.app {
+  display: flex !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  overflow: hidden !important;
+}
+
+.barra-lateral {
+  width: 260px !important;
+  min-width: 260px !important;
+  max-width: 260px !important;
+  height: 100vh !important;
+  flex-shrink: 0 !important;
+  position: relative !important;
+  z-index: 10 !important;
+}
+
+.app-contenido {
+  flex: 1 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100vh !important;
+  min-width: 0 !important;
+  overflow: hidden !important;
+}
+
+.contenido-principal {
+  flex: 1 !important;
+  overflow-y: auto !important;
+  padding: 1.5rem 2rem !important;
+  min-width: 0 !important;
+}
+
+.panel-doble {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) 320px !important;
+  gap: 1.5rem !important;
+  width: 100% !important;
+}
+
+.tabla-contenedor {
+  width: 100% !important;
+  overflow-x: auto !important;
+}
+/* Corrección de superposición e interacción de rejilla */
+.app {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.barra-lateral {
+  width: 260px;
+  flex-shrink: 0;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+}
+
+.app-contenido {
+  flex: 1;
+  min-width: 0; /* Evita que las tablas estiren el layout horizontalmente */
+  display: flex;
+  flex-direction: column;
+}
+
+.panel-doble {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+/* En pantallas pequeñas pasa a 1 sola columna */
+@media (max-width: 1024px) {
+  .panel-doble {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Logo superior de la barra lateral */
+.marca {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.25rem 1rem;
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.marca__logo {
+  background: var(--zofranca-verde, #10b981);
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 0.9rem;
+  padding: 0.4rem 0.6rem;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: -0.5px;
+}
+
+.marca span small {
+  display: block;
+  font-size: 0.7rem;
+  color: #94a3b8;
+  font-weight: 400;
+}
+.pie-tabla {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+}
+
+.paginacion {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.paginacion a,
+.paginacion__actual {
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  border: 1px solid var(--border-color, #e2e8f0);
+  text-decoration: none;
+  font-size: 0.85rem;
+}
+
+.paginacion__actual {
+  background-color: var(--zofranca-verde, #10b981);
+  color: white;
+  border-color: var(--zofranca-verde, #10b981);
+}

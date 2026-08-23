@@ -147,7 +147,7 @@
           </section>
 
           <div class="panel-doble">
-            <article class="tarjeta">
+            <article class="tarjeta" style="min-width: 0;">
               <div class="tabla-herramientas">
                 <div class="pestanas" role="tablist" aria-label="Filtrar solicitudes por estado">
                   <button class="pestana pestana--activa" type="button" data-filtro="todas" role="tab" aria-selected="true">Todas</button>
@@ -157,7 +157,7 @@
                 </div>
                 <button class="boton boton--fantasma boton--sm" type="button" title="Disponible en Fase 2">Exportar CSV</button>
               </div>
-              <div class="tabla-contenedor">
+              <div class="tabla-contenedor" style="overflow-x: auto;">
                 <table class="tabla">
                   <thead>
                     <tr>
@@ -313,7 +313,7 @@
               </footer>
             </article>
 
-            <aside style="display: grid; gap: 1.75rem;">
+            <div style="display: flex; flex-direction: column; gap: 1.75rem; min-width: 0;">
               <article class="tarjeta">
                 <header class="tarjeta__cabecera">
                   <h3>Accesos rápidos</h3>
@@ -378,7 +378,7 @@
                   </div>
                 </div>
               </article>
-            </aside>
+            </div>
           </div>
 
           <section class="aviso aviso--info">
@@ -424,6 +424,6 @@
     </div>
 
     <script src="../../js/sesion.js"></script>
-<script type="module" src="/js/admin/admin.js"></script>
+    <script type="module" src="/js/admin/admin.js"></script>
   </body>
 </html>
