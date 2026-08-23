@@ -21,4 +21,4 @@ El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1
   - Limpieza de scripts e importaciones duplicadas[cite: 5].
 
 - **Estilos (`dashboard.css`):**
-  - Ajustes de responsividad y scroll interno para tablas en contenedores secundarios[cite: 5, 6].
+  - Ajustes de responsividad y scroll interno para tablas en contenedores secundarios[cite: 5, 6]
