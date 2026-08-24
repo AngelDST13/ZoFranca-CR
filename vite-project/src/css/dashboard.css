@@ -229,6 +229,7 @@ aside .logo small {
   padding: 0.85rem clamp(1.25rem, 3vw, 2.5rem);
   background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--zf-borde);
 }
 
