@@ -3,6 +3,8 @@ import '../sesion.js';
 import '../../css/global.css';
 import '../../css/components.css';
 import '../../css/dashboard.css';
+import Swal from 'sweetalert2';
+import 'sweetalert2/dist/sweetalert2.min.css';
 
 const API_BASE_URL = 'http://localhost:3001';
 
@@ -195,7 +197,12 @@ document.addEventListener("DOMContentLoaded", () => {
         console.warn("Servidor offline — reporte no persistido:", err.message);
       }
 
-      alert(`✅ Reporte registrado exitosamente para ${empresa}`);
+      Swal.fire({
+        icon: 'success',
+        title: '✅ Reporte registrado',
+        text: `Reporte registrado exitosamente para ${empresa}`,
+        confirmButtonText: 'Aceptar'
+      });
       formCumplimiento.reset();
       evaluarCumplimiento(); // Refrescar tabla sin recargar la página
     });

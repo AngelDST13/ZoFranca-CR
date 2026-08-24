@@ -3,6 +3,8 @@ import '../sesion.js';
 import '../../css/global.css';
 import '../../css/components.css';
 import '../../css/dashboard.css';
+import Swal from 'sweetalert2';
+import 'sweetalert2/dist/sweetalert2.min.css';
 
 const API_BASE_URL = 'http://localhost:3001';
 
@@ -123,7 +125,12 @@ if (formularioSolicitud) {
 
     } catch (error) {
       console.error("Error en la petición:", error);
-      alert("No se pudo completar el registro de la solicitud. Verifique que el servidor backend esté en ejecución.");
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'No se pudo completar el registro de la solicitud. Verifique que el servidor backend esté en ejecución.',
+        confirmButtonText: 'Cerrar'
+      });
     } finally {
       if (botonSubmit) botonSubmit.disabled = false;
       if (cargandoModal) cargandoModal.hidden = true;

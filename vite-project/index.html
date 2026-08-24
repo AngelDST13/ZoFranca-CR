@@ -59,7 +59,22 @@
           </div>
           <div class="heroe__visual">
             <div class="heroe__tarjeta-imagen">
-              <img src="src/assets/hero.png" alt="Vista del panel corporativo de ZoFranca CR" />
+              <img src="src/assets/hero.png" alt="Vista del panel corporativo de ZoFranca CR" onerror="this.style.display='none'; this.closest('.heroe__tarjeta-imagen').classList.add('imagen-fallida');" />
+              <svg class="hero-fallback" viewBox="0 0 320 200" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                <title>Ilustración del panel</title>
+                <rect x="8" y="18" width="304" height="164" rx="12" fill="#e6f2fb" stroke="#cfe8fb" stroke-width="2"/>
+                <rect x="26" y="36" width="130" height="36" rx="6" fill="#ffffff" stroke="#d9eefb"/>
+                <rect x="26" y="82" width="80" height="22" rx="4" fill="#ffffff" stroke="#d9eefb"/>
+                <rect x="26" y="112" width="54" height="14" rx="3" fill="#ffffff" stroke="#d9eefb"/>
+                <rect x="168" y="36" width="120" height="82" rx="6" fill="#ffffff" stroke="#d9eefb"/>
+                <circle cx="218" cy="76" r="24" fill="none" stroke="#2bb673" stroke-width="6"/>
+                <path d="M196 76 L210 68 L226 84 L238 60" fill="none" stroke="#2b6bb6" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                <g transform="translate(26,140)">
+                  <rect x="0" y="0" width="32" height="36" rx="4" fill="#ffffff" stroke="#d9eefb"/>
+                  <rect x="44" y="0" width="32" height="24" rx="4" fill="#ffffff" stroke="#d9eefb"/>
+                  <rect x="88" y="0" width="52" height="12" rx="3" fill="#ffffff" stroke="#d9eefb"/>
+                </g>
+              </svg>
             </div>
             <div class="heroe__flotante heroe__flotante--ia">
               <span class="punto-estado"></span>

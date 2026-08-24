@@ -123,13 +123,32 @@
   border-radius: var(--zf-radio-lg);
   overflow: hidden;
   box-shadow: var(--zf-sombra-lg);
-  background: var(--zofranca-blanco);
+  background: linear-gradient(180deg, rgba(15,23,42,0.04), rgba(255,255,255,0.02));
 }
 
 .heroe__tarjeta-imagen img {
   width: 100%;
   height: 380px;
   object-fit: cover;
+}
+
+/* Si la imagen falla en cargar, no mostrar un recuadro blanco: */
+.heroe__tarjeta-imagen.imagen-fallida {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 220px;
+  background: linear-gradient(135deg, rgba(31,93,142,0.04), rgba(34,197,94,0.03));
+}
+
+.hero-fallback {
+  width: 70%;
+  height: auto;
+  max-width: 420px;
+  display: none;
+}
+.heroe__tarjeta-imagen.imagen-fallida .hero-fallback {
+  display: block;
 }
 
 .heroe__flotante {
