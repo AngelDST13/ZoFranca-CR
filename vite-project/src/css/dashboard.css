@@ -51,9 +51,7 @@ main, .contenido-principal {
   flex: 1 !important;
   padding: clamp(1.5rem, 3vw, 2.5rem) clamp(1.25rem, 3vw, 2.5rem) 3rem !important;
   background-color: #f8fafc !important;
-  min-height: 100vh !important;
   min-width: 0 !important;
-  overflow-y: auto !important;
   display: flex !important;
   flex-direction: column !important;
   gap: 2rem;
@@ -650,59 +648,6 @@ aside .logo small {
 
 @media (max-width: 560px) {
   .rejilla-metricas { grid-template-columns: 1fr; }
-}
-/* FORZADO DE REJILLA Y DESTIRE DE PANTALLA */
-html, body {
-  margin: 0 !important;
-  padding: 0 !important;
-  height: 100% !important;
-  width: 100% !important;
-  overflow: hidden !important;
-}
-
-.app {
-  display: flex !important;
-  width: 100vw !important;
-  height: 100vh !important;
-  overflow: hidden !important;
-}
-
-.barra-lateral {
-  width: 260px !important;
-  min-width: 260px !important;
-  max-width: 260px !important;
-  height: 100vh !important;
-  flex-shrink: 0 !important;
-  position: relative !important;
-  z-index: 10 !important;
-}
-
-.app-contenido {
-  flex: 1 !important;
-  display: flex !important;
-  flex-direction: column !important;
-  height: 100vh !important;
-  min-width: 0 !important;
-  overflow: hidden !important;
-}
-
-.contenido-principal {
-  flex: 1 !important;
-  overflow-y: auto !important;
-  padding: 1.5rem 2rem !important;
-  min-width: 0 !important;
-}
-
-.panel-doble {
-  display: grid !important;
-  grid-template-columns: minmax(0, 1fr) 320px !important;
-  gap: 1.5rem !important;
-  width: 100% !important;
-}
-
-.tabla-contenedor {
-  width: 100% !important;
-  overflow-x: auto !important;
 }
 /* Corrección de superposición e interacción de rejilla */
 .app {
