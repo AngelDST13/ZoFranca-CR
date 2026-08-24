@@ -47,6 +47,7 @@ const MOCK_SOLICITUDES = [
 
 const tablaCumplimiento = document.getElementById("tabla-cumplimiento");
 const cargandoModal = document.getElementById("indicador-carga");
+let avisadoSinSolicitudes = false;
 
 // Cargar y Comparar Reportes vs Compromisos (RF-11, RF-13, RF-18, RNF-03)
 async function evaluarCumplimiento() {
@@ -54,6 +55,7 @@ async function evaluarCumplimiento() {
 
   let reportes = [];
   let solicitudes = [];
+  let usandoMock = false;
 
   try {
     const [resReportes, resSolicitudes] = await Promise.all([
@@ -69,8 +71,20 @@ async function evaluarCumplimiento() {
     console.warn("JSON-Server no disponible, usando datos mock:", error.message);
     reportes = MOCK_REPORTES;
     solicitudes = MOCK_SOLICITUDES;
+    usandoMock = true;
   } finally {
     if (cargandoModal) cargandoModal.hidden = true;
+  }
+
+  // Alerta cuando no hay ninguna solicitud registrada todavía
+  if (!usandoMock && solicitudes.length === 0 && !avisadoSinSolicitudes) {
+    avisadoSinSolicitudes = true;
+    Swal.fire({
+      icon: "info",
+      title: "No hay solicitudes",
+      text: "Todavía no se han registrado solicitudes de instalación, por lo que no hay compromisos que evaluar.",
+      confirmButtonText: "Aceptar"
+    });
   }
 
   const evaluaciones = [];
@@ -173,16 +187,39 @@ document.addEventListener("DOMContentLoaded", () => {
     formCumplimiento.addEventListener("submit", async (e) => {
       e.preventDefault(); // Impide que la página se borre / recargue
 
-      const empresa = formCumplimiento.querySelector("[name='empresa']")?.value?.trim() || "Tech Solutions CR";
-      const inversion = Number(formCumplimiento.querySelector("[name='inversion']")?.value || 0);
-      const empleos = Number(formCumplimiento.querySelector("[name='empleos']")?.value || 0);
-      const exportaciones = Number(formCumplimiento.querySelector("[name='exportaciones']")?.value || 0);
+      const campoEmpresa = formCumplimiento.querySelector("[name='empresa']");
+      const campoPeriodo = formCumplimiento.querySelector("[name='periodo']");
+      const campoInversion = formCumplimiento.querySelector("[name='inversion_real']");
+      const campoEmpleos = formCumplimiento.querySelector("[name='empleos_actuales']");
+
+      // Validación: alerta cuando el reporte está vacío o incompleto
+      const camposVacios = [];
+      if (!campoEmpresa || !campoEmpresa.value.trim()) camposVacios.push("Empresa");
+      if (!campoInversion || !campoInversion.value.trim()) camposVacios.push("Inversión real acumulada");
+      if (!campoEmpleos || !campoEmpleos.value.trim()) camposVacios.push("Empleos actuales");
+
+      if (camposVacios.length > 0) {
+        Swal.fire({
+          icon: "warning",
+          title: "Reporte vacío",
+          html: `No se puede guardar el reporte. Complete los siguientes campos:<br><strong>${camposVacios.join(", ")}</strong>`,
+          confirmButtonText: "Entendido"
+        });
+        const primerVacio = [campoInversion, campoEmpleos].find((c) => c && !c.value.trim());
+        if (primerVacio) primerVacio.focus();
+        return;
+      }
+
+      const empresa = campoEmpresa.value.trim();
+      const periodo = campoPeriodo ? campoPeriodo.value : "";
+      const inversion = Number(campoInversion.value || 0);
+      const empleos = Number(campoEmpleos.value || 0);
 
       const nuevoReporte = {
         nombreEmpresa: empresa,
+        periodo,
         inversionEjecutada: inversion,
         empleosReales: empleos,
-        exportaciones,
         fechaReporte: new Date().toISOString()
       };
 

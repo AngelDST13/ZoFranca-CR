@@ -1,5 +1,13 @@
 // src/js/sesion.js
 
+const RUTA_SOLICITUD = '/src/pages/empresas/solicitud.html';
+
+// Únicas páginas permitidas para el rol empresa
+const PAGINAS_EMPRESA = ['solicitud.html', 'detalle-solicitud.html'];
+
+// Páginas/enlaces exclusivos del analista (RF-12: gestión y decisión)
+const ENLACES_SOLO_ANALISTA = ['admin.html', 'empresas.html', 'cumplimiento.html', 'alertas.html'];
+
 export function obtenerSesion() {
   const raw = localStorage.getItem('zf_sesion') || localStorage.getItem('zf_usuario');
   if (!raw) return null;
@@ -21,6 +29,64 @@ export function cerrarSesion() {
   window.location.href = '/src/pages/login/login.html';
 }
 
+// Bloquea a la empresa el acceso a páginas del analista
+function protegerRutaPorRol(usuario) {
+  if (!usuario || usuario.rol !== 'empresa') return true;
+  const rutaActual = window.location.pathname;
+  const esPublica = rutaActual.endsWith('index.html') || rutaActual.includes('login.html') || rutaActual === '/';
+  const permitida = PAGINAS_EMPRESA.some((pagina) => rutaActual.endsWith(pagina));
+  if (!esPublica && !permitida) {
+    window.location.replace(RUTA_SOLICITUD);
+    return false;
+  }
+  return true;
+}
+
+// Esconde funciones exclusivas del analista cuando la sesión es de empresa
+function ocultarFuncionesAnalista() {
+  // Enlaces hacia páginas del analista (menú lateral, migas de pan, botones)
+  document.querySelectorAll('a[href]').forEach((enlace) => {
+    const destino = enlace.getAttribute('href') || '';
+    if (!ENLACES_SOLO_ANALISTA.some((pagina) => destino.includes(pagina))) return;
+
+    // En migas de pan (títulos), convertir el enlace en texto plano para no romper el formato
+    if (enlace.closest('h1, h2, h3')) {
+      const texto = document.createElement('span');
+      texto.textContent = enlace.textContent;
+      texto.style.color = 'inherit';
+      enlace.replaceWith(texto);
+    } else {
+      enlace.style.display = 'none';
+    }
+  });
+
+  // Botón "Registrar decisión" / "Decidir" (RF-12, solo analista)
+  document.querySelectorAll('[data-abre-modal]').forEach((boton) => {
+    boton.style.display = 'none';
+  });
+
+  // Títulos del menú que quedaron sin enlaces visibles
+  document.querySelectorAll('.navegacion-lateral__titulo').forEach((titulo) => {
+    let nodo = titulo.nextElementSibling;
+    let hayEnlaces = false;
+    while (nodo && !nodo.classList.contains('navegacion-lateral__titulo')) {
+      if (nodo.tagName === 'A' && nodo.style.display !== 'none') {
+        hayEnlaces = true;
+        break;
+      }
+      nodo = nodo.nextElementSibling;
+    }
+    if (!hayEnlaces) titulo.style.display = 'none';
+  });
+
+  // El botón Cancelar del formulario apuntaba al directorio de empresas
+  const cancelar = document.querySelector('#formulario-solicitud a[href*="empresas.html"]');
+  if (cancelar) {
+    cancelar.style.display = '';
+    cancelar.setAttribute('href', '../../../index.html');
+  }
+}
+
 export function gestionarSesionYPerfil() {
   const usuario = obtenerSesion();
   const rutaActual = window.location.pathname;
@@ -32,8 +98,19 @@ export function gestionarSesionYPerfil() {
       return;
     }
   } else {
+    // Control de acceso por rol: la empresa solo ve sus solicitudes
+    if (!protegerRutaPorRol(usuario)) return;
+
     // Si la sesión existe, actualizar interfaz
     actualizarDatosUI(usuario);
+
+    if (usuario.rol === 'empresa') {
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', ocultarFuncionesAnalista);
+      } else {
+        ocultarFuncionesAnalista();
+      }
+    }
   }
 }
 

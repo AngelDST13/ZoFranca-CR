@@ -406,3 +406,94 @@
   height: 20px;
   flex-shrink: 0;
 }
+
+/* Zona de carga de documentos Excel */
+.zona-excel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 1.5rem 1rem;
+  text-align: center;
+  border: 2px dashed var(--zf-borde);
+  border-radius: var(--zf-radio-md);
+  background: var(--zofranca-gris-claro);
+  cursor: pointer;
+  transition: border-color var(--zf-transicion), background var(--zf-transicion), box-shadow var(--zf-transicion);
+}
+
+.zona-excel:hover,
+.zona-excel:focus-visible,
+.zona-excel--sobre {
+  border-color: var(--zofranca-azul-real);
+  background: var(--zf-azul-real-suave);
+}
+
+.zona-excel:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--zf-azul-real-suave);
+}
+
+.zona-excel svg {
+  width: 32px;
+  height: 32px;
+  color: var(--zofranca-azul-real);
+}
+
+.zona-excel p {
+  margin: 0;
+  font-size: 0.92rem;
+  color: var(--zf-texto);
+}
+
+.zona-excel small {
+  color: var(--zf-texto-suave);
+  font-size: 0.78rem;
+}
+
+.zona-excel input[type='file'] {
+  display: none;
+}
+
+.zona-excel__lista {
+  list-style: none;
+  padding: 0;
+  margin: 0.6rem 0 0;
+  display: grid;
+  gap: 0.45rem;
+}
+
+.zona-excel__archivo {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--zf-texto);
+  background: var(--zofranca-blanco);
+  border: 1px solid var(--zf-borde);
+  border-radius: var(--zf-radio-sm);
+}
+
+.zona-excel__archivo small {
+  color: var(--zf-texto-suave);
+  font-weight: 500;
+}
+
+.zona-excel__quitar {
+  margin-left: auto;
+  background: none;
+  border: none;
+  color: var(--zf-peligro);
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: 1;
+  padding: 0.15rem 0.4rem;
+  border-radius: 6px;
+  transition: background var(--zf-transicion);
+}
+
+.zona-excel__quitar:hover {
+  background: var(--zf-peligro-suave);
+}

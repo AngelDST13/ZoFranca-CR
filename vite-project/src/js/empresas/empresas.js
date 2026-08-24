@@ -71,6 +71,115 @@ if (modal) {
   });
 }
 
+// Carga de documentos Excel (opcional) — RF-02
+const zonaExcel = document.getElementById("zona-excel");
+const inputExcel = document.getElementById("documento-excel");
+const listaExcel = document.getElementById("lista-excel");
+const FORMATOS_EXCEL = [".xlsx", ".xls", ".csv"];
+const TAMANO_MAXIMO_BYTES = 5 * 1024 * 1024; // 5 MB
+let documentosExcel = [];
+
+function formatearTamano(bytes) {
+  if (bytes >= 1024 * 1024) return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
+  return `${Math.max(1, Math.round(bytes / 1024))} KB`;
+}
+
+function errorDeArchivo(archivo) {
+  const nombre = archivo.name.toLowerCase();
+  const formatoValido = FORMATOS_EXCEL.some((ext) => nombre.endsWith(ext));
+  if (!formatoValido) return "solo se admiten archivos .xlsx, .xls o .csv";
+  if (archivo.size > TAMANO_MAXIMO_BYTES) return "supera el tamaño máximo de 5 MB";
+  return null;
+}
+
+function pintarDocumentosExcel() {
+  if (!listaExcel) return;
+  listaExcel.innerHTML = "";
+  documentosExcel.forEach((archivo, indice) => {
+    const item = document.createElement("li");
+    item.className = "zona-excel__archivo";
+
+    const nombre = document.createElement("span");
+    nombre.textContent = archivo.nombre;
+
+    const tamano = document.createElement("small");
+    tamano.textContent = archivo.tamanoLegible;
+
+    const quitar = document.createElement("button");
+    quitar.type = "button";
+    quitar.className = "zona-excel__quitar";
+    quitar.setAttribute("aria-label", `Quitar ${archivo.nombre}`);
+    quitar.textContent = "×";
+    quitar.addEventListener("click", () => {
+      documentosExcel.splice(indice, 1);
+      pintarDocumentosExcel();
+    });
+
+    item.append(nombre, tamano, quitar);
+    listaExcel.appendChild(item);
+  });
+}
+
+function agregarArchivosExcel(archivos) {
+  Array.from(archivos).forEach((archivo) => {
+    const error = errorDeArchivo(archivo);
+    if (error) {
+      Swal.fire({
+        icon: "warning",
+        title: "Archivo no válido",
+        text: `"${archivo.name}" ${error}.`,
+        confirmButtonText: "Entendido"
+      });
+      return;
+    }
+    const yaExiste = documentosExcel.some((d) => d.nombre === archivo.name && d.bytes === archivo.size);
+    if (!yaExiste) {
+      documentosExcel.push({
+        archivo,
+        nombre: archivo.name,
+        bytes: archivo.size,
+        tamanoLegible: formatearTamano(archivo.size)
+      });
+    }
+  });
+  pintarDocumentosExcel();
+}
+
+if (zonaExcel && inputExcel) {
+  zonaExcel.addEventListener("click", () => inputExcel.click());
+  zonaExcel.addEventListener("keydown", (evento) => {
+    if (evento.key === "Enter" || evento.key === " ") {
+      evento.preventDefault();
+      inputExcel.click();
+    }
+  });
+
+  inputExcel.addEventListener("change", () => {
+    agregarArchivosExcel(inputExcel.files);
+    inputExcel.value = "";
+  });
+
+  ["dragenter", "dragover"].forEach((evento) => {
+    zonaExcel.addEventListener(evento, (e) => {
+      e.preventDefault();
+      zonaExcel.classList.add("zona-excel--sobre");
+    });
+  });
+
+  ["dragleave", "drop"].forEach((evento) => {
+    zonaExcel.addEventListener(evento, (e) => {
+      e.preventDefault();
+      zonaExcel.classList.remove("zona-excel--sobre");
+    });
+  });
+
+  zonaExcel.addEventListener("drop", (evento) => {
+    if (evento.dataTransfer && evento.dataTransfer.files.length > 0) {
+      agregarArchivosExcel(evento.dataTransfer.files);
+    }
+  });
+}
+
 // Manejo Asíncrono del Formulario de Solicitud/Reporte (RF-08, RF-09, RF-11, RF-12, RF-13, RF-15, RF-16)
 const formularioSolicitud = document.getElementById("formulario-solicitud");
 const cargandoModal = document.getElementById("indicador-carga");
@@ -86,14 +195,18 @@ if (formularioSolicitud) {
     // Extraer datos del formulario
     const datosFormulario = new FormData(formularioSolicitud);
     const nuevaSolicitud = {
-      nombreEmpresa: datosFormulario.get("nombreEmpresa") || "Empresa Sin Nombre",
+      nombreEmpresa: datosFormulario.get("empresa") || "Empresa Sin Nombre",
       sector: datosFormulario.get("sector") || "General",
-      inversionProyectada: Number(datosFormulario.get("inversionProyectada")) || 0,
-      empleosProyectados: Number(datosFormulario.get("empleosProyectados")) || 0,
+      zonaFranca: datosFormulario.get("zona_franca") || "",
+      correoContacto: datosFormulario.get("correo") || "",
+      descripcion: datosFormulario.get("descripcion") || "",
+      inversionProyectada: Number(datosFormulario.get("inversion")) || 0,
+      empleosProyectados: Number(datosFormulario.get("empleos")) || 0,
       estado: "Pendiente",
       resultadoIA: "Pendiente de evaluación",
       puntajeIA: 0,
-      fechaRegistro: new Date().toISOString()
+      fechaRegistro: new Date().toISOString(),
+      documentos: documentosExcel.map((d) => ({ nombre: d.nombre, tamano: d.tamanoLegible }))
     };
 
     try {
@@ -119,6 +232,9 @@ if (formularioSolicitud) {
           fecha: new Date().toISOString()
         })
       });
+
+      documentosExcel = [];
+      pintarDocumentosExcel();
 
       // Redirección con ID para detalle de solicitud
       window.location.href = `detalle-solicitud.html?id=${solicitudGuardada.id}`;

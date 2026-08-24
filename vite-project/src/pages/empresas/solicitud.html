@@ -126,6 +126,17 @@
                   <label for="descripcion">Descripción del proyecto</label>
                   <textarea id="descripcion" name="descripcion" placeholder="Describa brevemente la operación, mercado objetivo y cadena de suministro…"></textarea>
                 </div>
+
+                <div class="campo campo--completo">
+                  <label for="documento-excel">Documentos de respaldo (Excel) <span class="texto-suave">(opcional)</span></label>
+                  <div class="zona-excel" id="zona-excel" tabindex="0" role="button" aria-label="Zona para cargar documentos Excel">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h2"/><path d="M8 17h2"/><path d="M14 13h2"/><path d="M14 17h2"/></svg>
+                    <p><strong>Arrastre sus archivos aquí</strong> o haga clic para seleccionarlos</p>
+                    <small>Formatos aceptados: .xlsx, .xls, .csv · Máximo 5 MB por archivo</small>
+                    <input type="file" id="documento-excel" name="documentos_excel" accept=".xlsx,.xls,.csv" multiple hidden />
+                  </div>
+                  <ul class="zona-excel__lista" id="lista-excel"></ul>
+                </div>
               </div>
 
               <div class="grupo-botones">
@@ -180,6 +191,7 @@
       </div>
     </div>
 
+    <script type="module" src="../../js/tema.js"></script>
     <script type="module" src="../../js/sesion.js"></script>
     <script type="module" src="../../js/empresas/empresas.js"></script>
   </body>
